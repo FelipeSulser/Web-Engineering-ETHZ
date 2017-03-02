@@ -1,0 +1,60 @@
+#container{
+	width: 960px;
+}
+#header{
+	width:960px;
+	position:fixed;
+	top:0;
+	bottom:auto;
+	background-color: white;
+}
+#header-right{
+	float:right;
+	width:300px;
+	margin-right:20px;
+	text-align: center;
+	
+}
+#header-left{
+	float:left;
+	width:300px;
+	margin-left: 20px;
+	margin-right: auto;
+
+}
+#headerContent{
+	margin: 0 auto;
+	width: 960px;
+}
+.content{
+	height: 1500px;
+	margin-top: 150px;
+}
+
+li{
+	float:left;
+	list-style-type: none;
+}
+li a{
+	display:block;
+	color:black;
+	padding-right:32px;
+	padding-left:32px;
+	text-decoration: none;
+}
+
+
+#logoimg{
+	position:relative;
+	top:20px;
+	max-width: 40px;
+	max-height: 40px;
+	width: auto;
+	height: auto;
+	top:-60px;
+}
+
+body{
+
+	font-family: 'Roboto';
+}
