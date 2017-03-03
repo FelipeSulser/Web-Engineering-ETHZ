@@ -1,7 +1,8 @@
+
 #container{
 	width: 960px;
 	margin: 0 auto;
-	background-color: #F8F8F8;
+	background-color:white;
 
 }
 #header{
@@ -9,15 +10,19 @@
 	position:fixed;
 	top:0;
 	bottom:auto;
-	background-color: #F8F8F8;
+	background-color: white;
 	margin: 0 auto;
 	padding-bottom: 20px;
 	font-size: 20px;
 }
+
+
 #header li{
 	float:left;
 	list-style-type: none;
 }
+
+
 #header li a{
 	margin: 0 auto;
 	width: 960px;
@@ -29,11 +34,12 @@
 #logoimg{
 	position:fixed;
 
-	max-width: 70px;
-	max-height: 70px;
+	max-width: 100px;
+	max-height: 100px;
 	width: auto;
 	height: auto;
-	top:20px;
+	top:15px;
+	left:45%;
 }
 
 .content{
@@ -46,6 +52,8 @@
 	background-size: cover;
 	background-image: url('../../images/header.jpg');
 	display: inline-block;
+	width:100%;
+	z-index:0;
 	text-align: center;
 }
 #firstblock h1{
@@ -55,21 +63,73 @@
 	
 	line-height: 430px;
 	padding: 10px;
-	padding-right: 337px;
-	padding-left: 337px;
+	padding-right: 296px;
+	padding-left: 296px;
+	font-family: sans-serif;
 	background-color: black;
 	background-size: contain;
 	color:white;
-	font-weight: lighter;
-	font-size: 40px;
+	font-weight: 100;
+	font-size: 50px;
 }
 #firstblock a{
 	color:white;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	text-align: center;
+	outline: none;
+	padding:14px;
+	padding-left: 30px;
+	padding-right: 30px;
+	
 	background-color:transparent;
 	text-decoration: none;
 	border-color: white;
+	background:rgba(0,0,0,0.5);
 
 	
+}
+.simpletext{
+	background-color: white;
+}
+.simpletext h2{
+	font-weight: 100;
+	font-size: 30px;
+	text-align: center;
+	margin: 30px;
+	margin-top: 55px;
+}
+.simpletext p{
+	text-align: center;
+	margin: 30px;
+	margin-bottom: 50px;
+
+}
+#thirdblock{
+	
+	background-image: url('../../images/small1.jpg');
+	background-size: cover;
+	background-position: right bottom;
+	height: 200px;
+}
+#thirdblock h2{
+
+	text-align: center;
+	font-weight: 100;
+	color:white;
+	padding-top: 70px;
+	
+}
+#thirdblock p{
+
+	text-align: center;
+	color:white;
+	margin-top:30px;
+	font-size: 13px;
+}
+
+.shadowed{
+	text-shadow:3px 3px 3px #666;
 }
 
 
