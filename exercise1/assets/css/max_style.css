@@ -194,8 +194,10 @@ ul{
 #Footer li{
 	display:inline-block;
 	margin: 0 3px;
+	font-family: sans-serif;
 }
 
 #left_li{
-	border-right: 2px solid lightgrey;
+	padding-right:5px;
+	border-right: 1px solid lightgrey;
 }
