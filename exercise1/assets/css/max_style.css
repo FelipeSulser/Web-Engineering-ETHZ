@@ -1,9 +1,78 @@
+#Contact{
+		
+	font-family:sans-serif;
+	text-align:center;
+	color:rgba(0,0,0,0.5); 
+	padding: 0px 15%;
+	margin-bottom:70px;
+}
+#Contact h2{
+	font-size:36px;
+}
+
+#Contact_row{
+	clear:both;
+	text-align:center;
+	margin: 0px 10px 20px 10px;
+}
+#Contact_row div{
+	display:inline;
+}
+#Contact_row input{
+	width:40%;
+	height: 35px;
+	padding: 10px 0px 10px 20px;
+        border-radius: 5px;
+	background-color:rgba(0,0,0,0.05);
+        font-size: 14px;
+	
+        border: none;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+
+#Contact_row textarea{
+	width:87%;
+	height: 200px;
+	padding: 10px 0px 10px 20px;
+        border-radius: 5px;	
+        border: none;
+	background-color:rgba(0,0,0,0.05);
+        font-size: 14px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+#Contact_button li{
+	display:inline;
+	padding:5px;
+}
+
+#Contact_button input{
+	font-size: 16px;
+	background-color: white;
+	color:rgba(0,0,0,0.5);
+	padding: 15px 40px;
+	border: 1px solid gray;		
+	border-radius: 4px;
+	text-decoration:none;
+}
+
+#Contact_button input[type="submit"]:hover{
+	color:white;
+	background-color:rgba(0,0,0,0.75);
+}
+
+
 
 #Booking{
+	
+	font-family:sans-serif;
 	width: 100%;
-	margin: 100px auto 100px ;
 	text-align:center;
 	background-image: url("../../images/book-table.jpg");
+	background-position: center; 
 }
 #Booking_inner{
 	color: white;
@@ -12,39 +81,93 @@
 	text-align:center;
 	background-color: rgba(0,0,0,0.5);
 }
-#Element{
-	float:left;
+
+#Booking_inner h2{
+	font-weight: normal;
+	font-size: 30px;
+	padding: 30px 0px;
+	margin: 0px;
 }
 
-#Formcontainer{
-	display:inline-block;
+#Booking_inner input[value="Book"]{
+	color:white;
+	background-color: #555555;
+	text-align: center;
+	border: none;
+	text-decoration: none;
+	font-size: 16px;	
+	border-radius: 4px;
+	padding: 15px 42px;
+	margin: 0px 0px 20px;	
+}
+
+#Element_set{
 	clear:both;
-	background-color:red;
-	width:100%;
+	text-align:center;
+	margin: 0px 10px 20px 10px;
+	
 }
-#Element input{
+
+#Element_set div{
+	display:inline;
+       
+}
+
+#Element_set input{
+	width:40%;
+	height: 35px;
+	padding: 10px 0px 10px 20px;
+        border-radius: 5px;
+        border: none;
+        color: #576366;
+        font-size: 14px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+#Element_set textarea{
+	width:90%;
+	height: 200px;
+	padding: 20px 0px 10px 20px;
+	border-radius: 5px;
+        border: none;
+        color: #576366;
+        font-size: 14px;
 }
 
 
 
-
-
-#Impressium{
+#Impressium{	
+	font-family:sans-serif;
+	font-size: 26px;
+	color:rgba(0,0,0,0.5); 
 	width: 100%;
-	margin: 100px auto 100px ;
+	padding: 100px 0px 50px ;
+	background-color:rgba(0,0,0,0.025); 
+	
 	text-align:center;
 }
 
-#Opening_Hours{
-	display:inline-block;
-	margin: 0 20px;
+#Impressium h2{
+	font-weight: lighter;
+	font-size: 30px;
+	margin: 0 auto 50px;
 }
-#Opening_Hours p{
+
+#Impressium p{
+	font-size: 15px;
+}
+
+
+#Opening_Hours{
 	text-align:left;
-} 
+	display:inline-block;
+	padding: 0 50px;
+}
 
 #Contacts{
 	display:inline-block;
+	padding: 0 50px;
 }
 
 #Contacts p{
@@ -52,16 +175,23 @@
 }
 
 #Footer{
+	background-color:rgba(0,0,0,0.025); 
+	font-size: 13px;
+	color:rgba(0,0,0,0.25); 
 	width: 100%;
-	margin: 100px auto 100px ;
+	padding: 10px 0px 200px ;
 	text-align:center;
+	
 }
 
 #Footer ul{
-	display: inline-block;
+	padding: 0px;
+}
+#Footer li{
+	display:inline-block;
+	margin: 0 3px;
 }
 
-#Footer li{
-	color: light-grey;
-	margin: 0 3px;
+#left_li{
+	border-right: 2px solid lightgrey;
 }
