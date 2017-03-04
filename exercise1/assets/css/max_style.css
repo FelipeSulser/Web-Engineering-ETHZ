@@ -1,6 +1,15 @@
+h2{
+	font-weight:100;
+}
+
+ul{
+	padding: 0px;
+}
+
+
 #Contact{
-		
-	font-family:sans-serif;
+	font-family: "helvetica neue", helvetica, arial, sans-serif;
+	
 	text-align:center;
 	color:rgba(0,0,0,0.5); 
 	padding: 0px 15%;
@@ -67,8 +76,8 @@
 
 
 #Booking{
-	
-	font-family:sans-serif;
+	font-family: "helvetica neue", helvetica, arial, sans-serif;
+	font-weight:100;
 	width: 100%;
 	text-align:center;
 	background-image: url("../../images/book-table.jpg");
@@ -83,7 +92,6 @@
 }
 
 #Booking_inner h2{
-	font-weight: normal;
 	font-size: 30px;
 	padding: 30px 0px;
 	margin: 0px;
@@ -138,18 +146,17 @@
 
 
 #Impressium{	
-	font-family:sans-serif;
 	font-size: 26px;
 	color:rgba(0,0,0,0.5); 
 	width: 100%;
 	padding: 100px 0px 50px ;
 	background-color:rgba(0,0,0,0.025); 
-	
+	font-family: "helvetica neue", helvetica, arial, sans-serif;
+	font-weight:100;
 	text-align:center;
 }
 
 #Impressium h2{
-	font-weight: lighter;
 	font-size: 30px;
 	margin: 0 auto 50px;
 }
@@ -184,9 +191,6 @@
 	
 }
 
-#Footer ul{
-	padding: 0px;
-}
 #Footer li{
 	display:inline-block;
 	margin: 0 3px;
