@@ -1,58 +1,145 @@
+
 #container{
 	width: 960px;
+
+	margin: 0 auto;
+	padding-top: 49px;
+	background-color:white;
+
 }
 #header{
 	width:960px;
 	position:fixed;
 	top:0;
+	height: 50px;
 	bottom:auto;
 	background-color: white;
-}
-#header-right{
-	float:right;
-	width:300px;
-	margin-right:20px;
-	text-align: center;
-	
-}
-#header-left{
-	float:left;
-	width:300px;
-	margin-left: 20px;
-	margin-right: auto;
-
-}
-#headerContent{
 	margin: 0 auto;
-	width: 960px;
-}
-.content{
-	height: 1500px;
-	margin-top: 150px;
+	padding-bottom: 20px;
+	font-size: 20px;
 }
 
-li{
+
+#header li{
 	float:left;
 	list-style-type: none;
 }
-li a{
-	display:block;
+
+
+#header li a{
+	margin: 0 auto;
+	width: 960px;
 	color:black;
-	padding-right:32px;
-	padding-left:32px;
+	padding:55px;
 	text-decoration: none;
+	font-family:'Kreon';
+	font-size: 23px;
 }
-
-
 #logoimg{
-	max-width: 40px;
-	max-height: 40px;
+	position:fixed;
+
+	max-width: 90px;
+	max-height: 90px;
 	width: auto;
 	height: auto;
-	top:-60px;
+	top:15px;
+	left:46%;
 }
 
-body{
 
-	font-family: 'Roboto';
+#firstblock{
+	height: 500px;
+	background-size: cover;
+	background-image: url('../../images/header.jpg');
+	display: inline-block;
+	width:100%;
+	z-index:0;
+	text-align: center;
+}
+#firstblock h1{
+	height: 280px;
+}
+#firstblock span{ 
+	line-height: 380px;
+	padding: 10px;
+	padding-right: 296px;
+	padding-left: 296px;
+	font-family: sans-serif;
+	background-color: black;
+	background-size: contain;
+	color:white;
+	font-weight: 100;
+	font-size: 50px;
+}
+#firstblock a{
+	color:white;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	text-align: center;
+	outline: none;
+	padding:14px;
+	padding-left: 30px;
+	padding-right: 30px;
+	
+	background-color:transparent;
+	text-decoration: none;
+	border-color: white;
+	background:rgba(0,0,0,0.8);
+
+	
+}
+.simpletext{
+	background-color: white;
+	height: 200px;
+}
+.simpletext h2{
+	
+	font-weight: 100;
+	font-size: 30px;
+	text-align: center;
+	margin: 30px;
+	margin-top: 55px;
+	color:grey;
+}
+.simpletext p{
+	text-align: center;
+	margin: 30px;
+	font-weight: 100;
+	margin-bottom: 50px;
+	color:grey;
+
+}
+#thirdblock{
+	
+	background-image: url('../../images/small1.jpg');
+	background-position:  bottom;
+	height: 200px;
+}
+#thirdblock h2{
+
+	text-align: center;
+	font-weight: 100;
+	color:white;
+	padding-top: 60px;
+	
+}
+#thirdblock p{
+
+	text-align: center;
+	color:white;
+	margin-top:30px;
+	font-size: 13px;
+}
+
+.shadowed{
+
+	text-shadow:2px 2px 2px #000000;
+}
+
+
+
+
+body{
+	font-family: sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
