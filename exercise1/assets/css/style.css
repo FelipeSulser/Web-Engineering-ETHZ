@@ -1,7 +1,9 @@
 
 #container{
 	width: 960px;
+
 	margin: 0 auto;
+	padding-top: 49px;
 	background-color:white;
 
 }
@@ -9,6 +11,7 @@
 	width:960px;
 	position:fixed;
 	top:0;
+	height: 50px;
 	bottom:auto;
 	background-color: white;
 	margin: 0 auto;
@@ -30,22 +33,19 @@
 	padding:55px;
 	text-decoration: none;
 	font-family:'Kreon';
+	font-size: 23px;
 }
 #logoimg{
 	position:fixed;
 
-	max-width: 100px;
-	max-height: 100px;
+	max-width: 90px;
+	max-height: 90px;
 	width: auto;
 	height: auto;
 	top:15px;
-	left:45%;
+	left:46%;
 }
 
-.content{
-	height: 1500px;
-	
-}
 
 #firstblock{
 	height: 500px;
@@ -60,8 +60,7 @@
 	height: 280px;
 }
 #firstblock span{ 
-	
-	line-height: 430px;
+	line-height: 380px;
 	padding: 10px;
 	padding-right: 296px;
 	padding-left: 296px;
@@ -85,31 +84,35 @@
 	background-color:transparent;
 	text-decoration: none;
 	border-color: white;
-	background:rgba(0,0,0,0.5);
+	background:rgba(0,0,0,0.8);
 
 	
 }
 .simpletext{
 	background-color: white;
+	height: 200px;
 }
 .simpletext h2{
+	
 	font-weight: 100;
 	font-size: 30px;
 	text-align: center;
 	margin: 30px;
 	margin-top: 55px;
+	color:grey;
 }
 .simpletext p{
 	text-align: center;
 	margin: 30px;
+	font-weight: 100;
 	margin-bottom: 50px;
+	color:grey;
 
 }
 #thirdblock{
 	
 	background-image: url('../../images/small1.jpg');
-	background-size: cover;
-	background-position: right bottom;
+	background-position:  bottom;
 	height: 200px;
 }
 #thirdblock h2{
@@ -117,7 +120,7 @@
 	text-align: center;
 	font-weight: 100;
 	color:white;
-	padding-top: 70px;
+	padding-top: 60px;
 	
 }
 #thirdblock p{
@@ -129,13 +132,14 @@
 }
 
 .shadowed{
-	text-shadow:3px 3px 3px #666;
+
+	text-shadow:2px 2px 2px #000000;
 }
 
 
 
 
 body{
-
-	font-family: 'Roboto';
+	font-family: sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
