@@ -1,0 +1,67 @@
+
+#Booking{
+	width: 100%;
+	margin: 100px auto 100px ;
+	text-align:center;
+	background-image: url("../../images/book-table.jpg");
+}
+#Booking_inner{
+	color: white;
+	width: 50%;
+	display:inline-block;
+	text-align:center;
+	background-color: rgba(0,0,0,0.5);
+}
+#Element{
+	float:left;
+}
+
+#Formcontainer{
+	display:inline-block;
+	clear:both;
+	background-color:red;
+	width:100%;
+}
+#Element input{
+}
+
+
+
+
+
+#Impressium{
+	width: 100%;
+	margin: 100px auto 100px ;
+	text-align:center;
+}
+
+#Opening_Hours{
+	display:inline-block;
+	margin: 0 20px;
+}
+#Opening_Hours p{
+	text-align:left;
+} 
+
+#Contacts{
+	display:inline-block;
+}
+
+#Contacts p{
+	text-align:left;
+}
+
+#Footer{
+	width: 100%;
+	margin: 100px auto 100px ;
+	text-align:center;
+}
+
+#Footer ul{
+	display: inline-block;
+}
+
+#Footer li{
+	color: light-grey;
+	margin: 0 3px;
+}
