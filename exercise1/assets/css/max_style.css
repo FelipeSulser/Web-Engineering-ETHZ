@@ -18,6 +18,10 @@ ul{
 #Contact h2{
 	font-size:36px;
 }
+#dummy{
+	padding-right: 1px;
+	padding-left: 1px;
+}
 
 #Contact_row{
 	clear:both;

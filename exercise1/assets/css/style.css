@@ -1,43 +1,54 @@
-
+#header, #container{
+	position: absolute;
+	right: 0;
+	left: 0;
+}
 #container{
-	width: 960px;
-
-	margin: 0 auto;
-	padding-top: 49px;
+	top:35px;
 	background-color:white;
-
+}
+#header:after{
+	width: 100%;
+	display: inline-block;
 }
 #header{
-	width:960px;
+	
 	position:fixed;
 	top:0;
-	height: 50px;
+	height: 45px;
 	bottom:auto;
 	background-color: white;
-	margin: 0 auto;
+	
 	padding-bottom: 20px;
-	font-size: 20px;
+	width: 100%;
+	text-align: justify;
+	
+	
+}
+
+header:after{
+	content:'';
+	display: inline-block;
+	width: 100%;
 }
 
 
 #header li{
 	float:left;
-	list-style-type: none;
-}
+	display: inline-block;
+	margin: 0 0 0 16%;
 
+}
 
 #header li a{
 	margin: 0 auto;
-	width: 960px;
 	color:black;
-	padding:55px;
 	text-decoration: none;
 	font-family:'Kreon';
 	font-size: 23px;
 }
 #logoimg{
 	position:fixed;
-
 	max-width: 90px;
 	max-height: 90px;
 	width: auto;
@@ -58,19 +69,20 @@
 	text-align: center;
 }
 #firstblock h1{
-	height: 280px;
-}
-#firstblock span{ 
-	line-height: 380px;
-	padding: 10px;
-	padding-right: 296px;
-	padding-left: 296px;
+	height: 10%;
+	
+	padding: 12px;
+	
 	font-family: sans-serif;
 	background-color: black;
 	background-size: contain;
 	color:white;
 	font-weight: 100;
 	font-size: 50px;
+	margin-top:170px;
+	line-height: 50px;
+	margin-bottom: 60px;
+
 }
 #firstblock a{
 	color:white;
