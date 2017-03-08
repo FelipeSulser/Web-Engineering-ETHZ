@@ -72,7 +72,7 @@ ul{
 	text-decoration:none;
 }
 
-#Contact_button input[type="submit"]:hover{
+#Contact_button input:hover{
 	color:white;
 	background-color:rgba(0,0,0,0.75);
 }
