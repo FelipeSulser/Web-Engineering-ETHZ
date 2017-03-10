@@ -22,7 +22,7 @@ a {
 .lower_brown_div{
 	background: #423433;
 	color: white;
-	height: 800px;
+	height: 820px;
 	text-align: center;
 }
 
@@ -180,6 +180,7 @@ div.img-tag{
 	margin-top: 10%;
 	margin-bottom: 0;
 	text-align: center;
+	font-weight: normal;
 }
 
 .smallEventBox h2{
@@ -189,6 +190,7 @@ div.img-tag{
 	margin-top: 2%;
 	text-align: center;
 	font-size: 1em;
+
 }
 
 
@@ -233,6 +235,7 @@ div.img-tag{
 	margin-top: 30px;
 	border-radius: 3px;
 	text-decoration: none;
+
 }
 
 .bigImage{
@@ -278,7 +281,7 @@ div.img-tag{
 	}
 
 	.brown_div{
-		height: 1520px;
+		height: 1337px;
 	}
 
 	.img-container{

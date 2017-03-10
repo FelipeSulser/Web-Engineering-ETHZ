@@ -7,7 +7,7 @@
 	margin: auto;
 }
 #container{
-	top:5%;
+	top:15%;
 	background-color:white;
 	display: inline-block;
 	max-width: 960px;
@@ -85,7 +85,7 @@ a:hover #menu-icon {
 
 
 #firstblock{
-	height: auto;
+	height: 400px;
 	width:100%;
 	#max-width: 100%;
 	background-image: url('../../images/header.jpg');
@@ -95,7 +95,6 @@ a:hover #menu-icon {
 	background-position: center;
 	z-index:0;
 	text-align: center;
-	
 	display:flex;
 	justify-content:center;
 	flex-direction:column;
@@ -122,10 +121,8 @@ a:hover #menu-icon {
 	text-align: center;
 	outline: none;
 	padding:2%;
-	padding-left: 30px;
-	padding-right: 30px;
-	margin-left: 37%;
-	margin-right:37%;
+	margin-left: 40%;
+	margin-right:40%;
 	margin-bottom: 5%	;
 	background-color:transparent;
 	text-decoration: none;
@@ -253,6 +250,9 @@ a:hover #menu-icon {
 		left:41%;
 		z-index: 1000;
 		
+	}
+	#firstblock{
+		height: auto;
 	}
 	#firstblock h1{
 		font-size: 2em;
