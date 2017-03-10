@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 
 <html>
+<meta name="viewport" content="width=device-width">
 	<head>
 		<title>LaPlace Restaurant</title>
 		<meta charset="utf-8" />
@@ -14,19 +15,22 @@
 	<body id="container">
 
 		<!-- Header -->
-		
+			<a href="index.html"  ><img src="images/logo.png" alt="" id = "hidden"> </a>
 					<div id = "header">
+						<nav id="nav">
+							<a href="#" id="menu-icon"></a>
 					  <ul>
 					  <div id="headercontent">
-					   <li ><a href="#first" >About</a></li>
-					   <li ><a href="#menu" >Menu</a></li>
+					   <li class="modif"><a href="#first" class="needbutton" >About</a></li>
+					   <li class="modif"><a href="#menu" class="needbutton">Menu</a></li>
 						
 					   <li ><a href="index.html"  ><img src="images/logo.png" alt="" id = "logoimg"> </a></li>
 					  
-					   <li ><a href="#events" >Events</a></li>
-					   <li ><a href="#contacts"  >Contacts</a></li>
+					   <li class="modif"><a href="#events" class="needbutton">Events</a></li>
+					   <li class="modif"><a href="#contacts"  class="needbutton">Contacts</a></li>
 					  </div>
 					 </ul>
+					</nav>
 					</div>
 			<div class= "content">
 
@@ -52,7 +56,7 @@
 		<!-- Second About -->		
 			
 				
-					<div id="thirdblock" >
+					<div id="thirdblock" class="parallax" >
 						<h2 class="shadowed" >High Quality Cuisine</h2>
 						<p class="shadowed">Our cuisine is a melting pot of different cultures which have come together to form a unique blend of flavours and techniques.<br />
 					</div>
@@ -198,7 +202,7 @@
 									<span ><span  ></span></span>
 
 								<img class="bigImage" src="images/3.png">
-									<a class="header-sum"href="">
+									<a class="header-sum" href="">
 										<h3>Happy Hour</h3>
 										<h2>03/03/2017 18:00 - 23:00</h2>
 									</a>
@@ -316,7 +320,7 @@
 		
 		<!-- 5th -->	
 		
-		<div id = "Booking">
+		<div id = "Booking" class="parallax">
 		<div id = "Booking_inner">
 					<h2  >Book a table</h2>
 				<div>
