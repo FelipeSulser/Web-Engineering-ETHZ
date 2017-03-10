@@ -22,7 +22,7 @@ a {
 .lower_brown_div{
 	background: #423433;
 	color: white;
-	height: 760px;
+	height: 800px;
 	text-align: center;
 }
 
@@ -188,7 +188,7 @@ div.img-tag{
 	color: white;
 	margin-top: 2%;
 	text-align: center;
-	font-size: 150%;
+	font-size: 1em;
 }
 
 
@@ -313,7 +313,7 @@ div.img-tag{
 	}
 
 	.smallEventBox h2{
-		font-size: 100%;
+		font-size: 10px;
 	}
 }
 

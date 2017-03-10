@@ -45,6 +45,7 @@ ul{
 }
 
 
+
 #Contact_row textarea{
 	width:87%;
 	height: 200px;
@@ -70,6 +71,7 @@ ul{
 	border: 1px solid gray;		
 	border-radius: 4px;
 	text-decoration:none;
+	margin: 1% 0;
 }
 
 #Contact_button input:hover{
@@ -204,4 +206,73 @@ ul{
 #left_li{
 	padding-right:5px;
 	border-right: 1px solid lightgrey;
+}
+
+/* first break */
+@media (max-width: 720px) {
+	#Contact_row input{
+		width:80%;
+		margin: 1% 0;
+	}
+
+	#Contact form{
+		width: 100%;
+	}
+
+	#Contact_row textarea{
+		width: 80%;
+	}
+
+	#Booking_inner{
+		width: 100%;
+	}
+
+	#Element_set input{
+		width:80%;
+		margin-bottom: 1%;
+	}
+
+	#Element_set textarea{
+		width:80%;
+	}
+
+	#Opening_Hours{
+		border: 1px solid black;
+		padding: 5% 30%;
+		margin-bottom: 5%;
+	}
+
+	#Contacts{
+		border: 1px solid black;
+		padding: 5% 29%;
+		margin-bottom: 5%;
+	}
+}
+
+@media (max-width: 886px) and (min-width: 720px) {
+
+	#Booking_inner{
+		#width: 80%;
+	}
+
+	#Element_set input{
+		width:80%;
+		margin-bottom: 1%;
+	}
+
+	#Element_set textarea{
+		width:80%;
+	}
+
+	#Opening_Hours{
+		border: 1px solid black;
+		padding: 5% 30%;
+		margin-bottom: 5%;
+	}
+
+	#Contacts{
+		border: 1px solid black;
+		padding: 5% 29%;
+		margin-bottom: 5%;
+	}
 }
