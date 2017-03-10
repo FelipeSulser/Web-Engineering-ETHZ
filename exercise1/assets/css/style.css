@@ -2,10 +2,16 @@
 	position: absolute;
 	right: 0;
 	left: 0;
+	#display: inline-block;
+	max-width: 960px;
+	margin: auto;
 }
 #container{
 	top:35px;
 	background-color:white;
+	display: inline-block;
+	max-width: 960px;
+	margin: auto;
 }
 #header:after{
 	width: 100%;
@@ -22,8 +28,6 @@
 	padding-bottom: 20px;
 	width: 100%;
 	text-align: justify;
-	
-	
 }
 
 header:after{

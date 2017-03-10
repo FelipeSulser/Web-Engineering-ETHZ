@@ -16,39 +16,49 @@ a {
 	background: #423433;
 	color: white;
 	height: 760px;
+	#text-align: center;
+}
+
+.lower_brown_div{
+	background: #423433;
+	color: white;
+	height: 760px;
+	text-align: center;
 }
 
 #right{
 	height: 100%;
-	#background-color: aliceblue;
+	width: 70%;
+	#background-color: red;
+	display: inline-block;
 }
 
-div.img-container{
+.img-container{
 	display: inline-block;
-	background-color: transparent;
-	height: 250px;
-	width: 330px;
-	float: right;
+	#background-color: yellow;
+	height: 33%;
+	width: 49%;
+	overflow: hidden;
+	margin: auto;
 }
 div.opback{
 	opacity: 0.7;
 	background-color: black;
 	position: relative;
-	top: 160px;
-	left: 20px;
-	width: 300px;
+	width: 93%;
 	height: 30px;
+	top: 50%;
+	left: 3%;
 }
 
-img.my-img{
-	max-width:300px;
-	max-height: 250px;
+.my-img{
+	max-width: 93%;
+	max-height:95%;
+	width: auto;
+	height: auto;
+	display: block;
 	border-radius: 10px;
-	size: auto;
-	margin-left: 20px;
-	margin-right: 20px;
-	margin-bottom: auto;
-	margin-top: 0px;
+	margin: auto 3%;
 }
 
 div.img-tag{
@@ -63,19 +73,24 @@ div.img-tag{
 
 /* left part of the menu section */
 
-.brown_div .left{
-	background: transparent;
+.left{
+	#background-color: blue;
 	width: 25%;
 	height: 100%;
 	margin-left: 0px;
 	margin-bottom: 0px;
 	float: left;
-	padding-right:10px;
-	padding-left: 40px;
+	text-align: center;
 }
+
+
 .brown_div .left p{
 	text-align: justify;
 	line-height: 1.5;
+	#background-color: black;
+	display: inline-block;
+	margin: 0 10%;
+	max-width: 400px;
 }
 
 .brown_div  h2{
@@ -90,20 +105,21 @@ div.img-tag{
 	#margin-bottom: 40px;
 }
 
+/* Buttons */
 .brown_div .left a{
+	display: block;
 	width: 80%;
-	margin-left: 10%;
+	max-width: 300px;
+	margin: 0 auto;
 	border-radius: 5px;
 	text-align: center;
-	float: left;
-	display: block;
+	flex-direction: column;
 	clear: both;
 	padding:10px 0 10px 0;
 	border: 1px solid white;
 	text-decoration: none;
 	color: white;
 	line-height: 1.5;
-
 }
 
 .brown_div .left a:hover{
@@ -122,7 +138,7 @@ div.img-tag{
 	width: 29%;
 	height: 350px;
 	#background-color: blue;
-	margin: 0 2% 0 2% ;
+	margin: 0 2% 5% 2% ;
 }
 
 .bigEventBox p{
@@ -172,26 +188,34 @@ div.img-tag{
 	color: white;
 	margin-top: 2%;
 	text-align: center;
+	font-size: 150%;
 }
 
 
 #divforsmallimg {
-	width: 80px;
-	height: 80px;
+	max-width: 80px;
+	max-height: 80px;
+	width: auto;
+	height: auto;
 	background-position: left bottom;
 	position: relative;
-	left: 30%;
+	#left: 30%;
 	top: 10px;
 	border: 0.2px solid white;
 	overflow: hidden;
-	margin-bottom: 40px;
+	margin: 0 auto 40px auto;
 }
 .smallImage{
 	width: auto;
 }
 #centerid{
 	text-align: center;
+	display: inline-block;
+	clear: both;
+	#background-color: magenta;
+	margin: auto;
 }
+
 
 
 .SeeMoreBtn{
@@ -212,13 +236,15 @@ div.img-tag{
 }
 
 .bigImage{
-	width: 50%;
-	height: 36%;
+	max-width: 50%;
+	max-height: 36%;
+	width: auto;
+	height: auto;
 	border: 1px solid white;
 	border-radius: 1px;
 	display: inline-block;
 	position: relative;
-	left: 30%;
+	#left: 30%;
 	top: 10px;
 }
 .header-sum h3{
@@ -234,4 +260,73 @@ div.img-tag{
 	text-decoration: none !important;
 	font-weight: lighter;
 	text-underline: none;
+}
+
+
+/* first break */
+@media (max-width: 720px){
+
+	/* upper brown part*/
+	.left{
+		width: 100%;
+		height: auto;
+		margin-bottom: 10%;
+	}
+
+	#right{
+		width: 100%;
+	}
+
+	.brown_div{
+		height: 1520px;
+	}
+
+	.img-container{
+		max-height: 16.5%;
+		#background-color: red;
+	}
+
+	/* lower brown part*/
+	.bigEventBox{
+		display: block;
+		width: 90%;
+		height: 350px;
+		margin: 1% auto ;
+		#background-color: red;
+		border: 1px solid white;
+		float: none;
+	}
+
+	.bigImage{
+		max-width: 60%;
+		max-height: 45%;
+	}
+
+	.lower_brown_div{
+		height: 1920px;
+	}
+
+	.smallEventBox{
+		width: 45%;
+		margin: 30px auto;
+		float: none;
+	}
+
+	.smallEventBox h2{
+		font-size: 100%;
+	}
+}
+
+@media (max-width: 500px){
+	.brown_div{
+		height: 2280px;
+	}
+
+	.img-container{
+		max-height: 12.7%;
+		width: 80%;
+		display: block;
+		margin: auto;
+	}
+
 }
