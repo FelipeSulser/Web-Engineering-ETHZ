@@ -16,7 +16,7 @@ a {
 	background: #423433;
 	color: white;
 	height: 760px;
-	#text-align: center;
+	text-align: center;
 }
 
 .lower_brown_div{
@@ -35,11 +35,12 @@ a {
 
 .img-container{
 	display: inline-block;
-	#background-color: yellow;
+	#background-color: red;
 	height: 33%;
 	width: 49%;
 	overflow: hidden;
-	margin: auto;
+	margin-left: 0.5%;
+	#margin: auto;
 }
 div.opback{
 	opacity: 0.7;
@@ -48,7 +49,7 @@ div.opback{
 	width: 93%;
 	height: 30px;
 	top: 50%;
-	left: 3%;
+	left: 3.5%;
 }
 
 .my-img{
@@ -56,9 +57,9 @@ div.opback{
 	max-height:95%;
 	width: auto;
 	height: auto;
-	display: block;
+	#display: block;
 	border-radius: 10px;
-	margin: auto 3%;
+	margin: 0 3%;
 }
 
 div.img-tag{
@@ -320,12 +321,25 @@ div.img-tag{
 	}
 }
 
+@media (max-width: 720px) and (min-width: 600px) {
+	.img-container{
+		#background-color: yellow;
+		width: 44%;
+	}
+
+	.my-img{
+		margin: -3% 3%;
+		max-height: 200px;
+
+	}
+}
+
 @media (max-width: 500px){
 	.brown_div{
 		height: 2280px;
 	}
 
-	.img-container{
+	.img-container {
 		max-height: 12.7%;
 		width: 80%;
 		display: block;
