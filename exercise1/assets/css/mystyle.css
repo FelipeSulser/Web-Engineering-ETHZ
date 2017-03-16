@@ -31,21 +31,23 @@ a {
 	width: 70%;
 	#background-color: red;
 	display: inline-block;
+	margin-top: 20px;
 }
 
 .img-container{
 	display: inline-block;
 	#background-color: red;
+	position: relative;
 	height: 33%;
 	width: 49%;
 	overflow: hidden;
 	margin-left: 0.5%;
-	#margin: auto;
 }
-div.opback{
+.opback{
 	opacity: 0.7;
 	background-color: black;
-	position: relative;
+	position: absolute;
+	#display: inline-block;
 	width: 93%;
 	height: 30px;
 	top: 50%;
@@ -53,14 +55,25 @@ div.opback{
 }
 
 .my-img{
-	max-width: 93%;
-	max-height:95%;
-	width: auto;
-	height: auto;
-	#display: block;
-	border-radius: 10px;
-	margin: 0 3%;
+	 max-width: 93%;
+	 max-height:95%;
+	 width: auto;
+	 height: auto;
+	 #display: block;
+	 border-radius: 10px;
+	 margin: 0 3%;
+	 z-index: 1;
+ }
+
+.img-a{
+	#background-color: blue;
 }
+
+
+.img-a:hover + .opback, .opback:hover {
+	background-color: blue;
+}
+
 
 div.img-tag{
 	margin: 10px;
