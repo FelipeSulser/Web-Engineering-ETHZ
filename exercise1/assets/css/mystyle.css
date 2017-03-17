@@ -52,6 +52,10 @@ a {
 	height: 30px;
 	top: 50%;
 	left: 3.5%;
+
+	#-webkit-transition: 2s; /* For Safari 3.1 to 6.0 */
+	#transition: 2s;
+	transition: height .2s ease 0s, top .4s ease 0s;
 }
 
 .my-img{
@@ -71,11 +75,32 @@ a {
 
 
 .img-a:hover + .opback, .opback:hover {
-	background-color: blue;
+	height: 200px;
+	top:0;
+
+	/* Gradient */
+	/background: rgba(255, 100, 100, 1); /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* Standard syntax */
+
+	transition: height 1s ease 0s, top 1s ease 0s, transform 3s ease;
+
+	transform: rotateY(-360deg)
+}
+
+.img-a:hover .img-tag{
+	transform: rotateY(-180deg);
+}
+
+@keyframes spin {
+	from { transform: rotateY(0deg); }
+	to { transform: rotateY(-360deg); }
 }
 
 
-div.img-tag{
+.img-tag{
 	margin: 10px;
 	position: relative;
 	top: 0px;
@@ -83,6 +108,7 @@ div.img-tag{
 	font-size: 18px;
 	border-bottom: 1px dotted white;
 	display: inline;
+
 }
 
 /* left part of the menu section */
