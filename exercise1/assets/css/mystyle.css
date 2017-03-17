@@ -110,6 +110,10 @@ div.img-tag{
 .mainwrapper{
 	flex:1;
 }
+.mainwrapper img{
+	width:100%;
+	height: auto;
+}
 .modalwrapper header{
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -149,11 +153,12 @@ div.img-tag{
 .modalDialog > div {
 
 	color: black;
-	width: 400px;
+	width: 40%;
 	position: relative;
 	margin: 10% auto;
 	background: #fff;
 	padding: 9px 30px;
+	border-radius: 10px;
 }
 .close {
 	color:black;
