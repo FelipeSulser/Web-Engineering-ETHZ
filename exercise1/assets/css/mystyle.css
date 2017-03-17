@@ -67,10 +67,11 @@ a {
 
 .img-a{
 	#background-color: blue;
+
 }
 
 
-.img-a:hover + .opback, .opback:hover {
+.img-a:hover  .opback, .opback:hover {
 	background-color: blue;
 }
 
@@ -83,6 +84,7 @@ div.img-tag{
 	font-size: 18px;
 	border-bottom: 1px dotted white;
 	display: inline;
+	color:white;
 }
 
 /* left part of the menu section */
@@ -96,7 +98,76 @@ div.img-tag{
 	float: left;
 	text-align: center;
 }
+.modalwrapper{
+	display:flex;
+	flex-direction:column;
 
+}
+.modalwrapper header,
+.modalwrapper footer{
+	height: 30px;
+}
+.mainwrapper{
+	flex:1;
+}
+.modalwrapper header{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.modalwrapper header h2{
+	text-align: left;
+	font-weight: 200;
+}
+.modalwrapper footer{
+	text-align: left;
+	font-family: sans-serif;
+	font-weight: 100;
+	padding-top: 30px;
+	
+}
+.modalDialog {
+
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+
+}
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modalDialog > div {
+
+	color: black;
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	background: #fff;
+	padding: 9px 30px;
+}
+.close {
+	color:black;
+	line-height: 25px;
+	position: absolute;
+	right: 15px;
+	text-align: center;
+
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.close:hover { background: #00d9ff; }
 
 .brown_div .left p{
 	text-align: justify;
