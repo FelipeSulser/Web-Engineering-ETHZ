@@ -53,9 +53,9 @@ a {
 	top: 50%;
 	left: 3.5%;
 
-	#-webkit-transition: 2s; /* For Safari 3.1 to 6.0 */
+	/*#-webkit-transition: 2s; 
 	#transition: 2s;
-	transition: height .2s ease 0s, top .4s ease 0s;
+	transition: height .2s ease 0s, top .4s ease 0s; */
 }
 
 .my-img{
@@ -84,14 +84,24 @@ a {
 	background: -o-linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* Standard syntax */
+	
+	display: flex;
+   	align-items: center;
+    	justify-content: center;
+	/*
+	transition: transform 3s ease;
 
-	transition: height 1s ease 0s, top 1s ease 0s, transform 3s ease;
+	transform: rotateY(-360deg);*/
 
-	transform: rotateY(-360deg)
+	
 }
 
-.img-a:hover .img-tag{
-	transform: rotateY(-180deg);
+.opback:hover p, .img-a:hover p+ .opback{
+	transition: transform 3s ease;
+	transform:  rotateY(-360deg);
+
+	/*margin-top:50px;/*
+	/*#transform: rotateY(-360deg);*/
 }
 
 @keyframes spin {
