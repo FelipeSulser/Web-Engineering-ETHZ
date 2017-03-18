@@ -88,10 +88,8 @@ a {
 	display: flex;
    	align-items: center;
     	justify-content: center;
-	/*
-	transition: transform 3s ease;
 
-	transform: rotateY(-360deg);*/
+	transition: height 0.5s ease 0s, top 1s ease 0s;
 
 	
 }
@@ -99,7 +97,7 @@ a {
 .opback:hover p, .img-a:hover p+ .opback{
 	transition: transform 3s ease;
 	transform:  rotateY(-360deg);
-
+	border:none;
 	/*margin-top:50px;/*
 	/*#transform: rotateY(-360deg);*/
 }
