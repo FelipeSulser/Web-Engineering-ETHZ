@@ -51,8 +51,17 @@ a {
 	width: 93%;
 	height: 30px;
 	top: 50%;
+	display: flex;
+   	align-items: center;
+    justify-content: left;
 	left: 3.5%;
+	color:white;
+
+
+	transition: height 0.5s ease 0s, top 1s ease 0s;
+
 }
+
 
 .my-img{
 	 max-width: 93%;
@@ -63,6 +72,7 @@ a {
 	 border-radius: 10px;
 	 margin: 0 3%;
 	 z-index: 1;
+
  }
 
 .img-a{
@@ -72,11 +82,63 @@ a {
 
 
 .img-a:hover  .opback, .opback:hover {
-	background-color: blue;
+	height: 200px;
+
+	top:0;
+	border-radius: 10px;
+	/* Gradient */
+	/background: rgba(255, 100, 100, 1); /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* Standard syntax */
+	
+	display: flex;
+
+
+    	
+
+
+	
+}
+
+.opback:hover > .img-tag-hack{
+	
+	transform:  rotateY(360deg) translate(0%,0%);
+
+	border:none;
+	padding-left: 20%;
+	justify-content: center;
+	/*margin-top:50px;/*
+	/*#transform: rotateY(-360deg);*/
+}
+.opback:hover > .img-tag{
+	
+	transform:  rotateY(360deg) translate(0%,0%);
+	
+	border:none;
+	padding-left: 30%;
+	justify-content: center;
+	/*margin-top:50px;/*
+	/*#transform: rotateY(-360deg);*/
+}
+
+.opback > .img-tag-hack{
+	transition: all 1s ease;
+	transition: ;
+}
+
+.opback > .img-tag{
+	transition: all 1s ease;
+	transition: ;
 }
 
 
-div.img-tag{
+
+
+
+
+.img-a .img-tag{
 	margin: 10px;
 	position: relative;
 	top: 0px;
@@ -84,7 +146,6 @@ div.img-tag{
 	font-size: 18px;
 	border-bottom: 1px dotted white;
 	display: inline;
-	color:white;
 }
 
 /* left part of the menu section */
@@ -173,7 +234,7 @@ div.img-tag{
 	font-weight: bold;
 }
 
-.close:hover { background: #00d9ff; }
+.close:hover { color:rgba(241,60,21,1); }
 
 .brown_div .left p{
 	text-align: justify;
@@ -411,7 +472,16 @@ div.img-tag{
 	}
 }
 
+@media (max-width: 800px) and (min-width: 720px) {
+.img-a:hover  .opback, .opback:hover {
+		height:130px;
+	}
+	}
+
 @media (max-width: 720px) and (min-width: 600px) {
+	.img-a:hover  .opback, .opback:hover {
+		height:130px;
+	}
 	.img-container{
 		#background-color: yellow;
 		width: 44%;
@@ -425,6 +495,9 @@ div.img-tag{
 }
 
 @media (max-width: 500px){
+	.img-a:hover  .opback, .opback:hover {
+		height:160px;
+	}
 	.brown_div{
 		height: 2280px;
 	}
@@ -435,5 +508,11 @@ div.img-tag{
 		display: block;
 		margin: auto;
 	}
+	.modalwrapper footer{
+		font-size: 0.8em;
+	}
+	
+	
+
 
 }
