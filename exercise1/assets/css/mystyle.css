@@ -51,12 +51,17 @@ a {
 	width: 93%;
 	height: 30px;
 	top: 50%;
+	display: flex;
+   	align-items: center;
+    justify-content: left;
 	left: 3.5%;
+	color:white;
 
-	/*#-webkit-transition: 2s; 
-	#transition: 2s;
-	transition: height .2s ease 0s, top .4s ease 0s; */
+
+	transition: height 0.5s ease 0s, top 1s ease 0s;
+
 }
+
 
 .my-img{
 	 max-width: 93%;
@@ -67,16 +72,20 @@ a {
 	 border-radius: 10px;
 	 margin: 0 3%;
 	 z-index: 1;
+
  }
 
 .img-a{
 	#background-color: blue;
+
 }
 
 
-.img-a:hover + .opback, .opback:hover {
+.img-a:hover  .opback, .opback:hover {
 	height: 200px;
+
 	top:0;
+	border-radius: 10px;
 
 	/* Gradient */
 	/background: rgba(255, 100, 100, 1); /* For browsers that do not support gradients */
@@ -86,29 +95,48 @@ a {
 	background: linear-gradient(rgba(255, 100, 100, 1), rgba(0, 0, 0, 0)); /* Standard syntax */
 	
 	display: flex;
-   	align-items: center;
-    	justify-content: center;
-
-	transition: height 0.5s ease 0s, top 1s ease 0s;
 
 	
 }
 
-.opback:hover p, .img-a:hover p+ .opback{
-	transition: transform 3s ease;
-	transform:  rotateY(-360deg);
+.opback:hover > .img-tag-hack{
+	
+	transform:  rotateY(360deg) translate(0%,0%);
+
 	border:none;
+	padding-left: 20%;
+	justify-content: center;
+	/*margin-top:50px;/*
+	/*#transform: rotateY(-360deg);*/
+}
+.opback:hover > .img-tag{
+	
+	transform:  rotateY(360deg) translate(0%,0%);
+	
+	border:none;
+	padding-left: 30%;
+	justify-content: center;
 	/*margin-top:50px;/*
 	/*#transform: rotateY(-360deg);*/
 }
 
-@keyframes spin {
-	from { transform: rotateY(0deg); }
-	to { transform: rotateY(-360deg); }
+.opback > .img-tag-hack{
+	transition: all 1s ease;
+	transition: ;
+}
+
+.opback > .img-tag{
+	transition: all 1s ease;
+	transition: ;
 }
 
 
-.img-tag{
+
+
+
+
+.img-a .img-tag{
+
 	margin: 10px;
 	position: relative;
 	top: 0px;
@@ -130,7 +158,82 @@ a {
 	float: left;
 	text-align: center;
 }
+.modalwrapper{
+	display:flex;
+	flex-direction:column;
 
+}
+.modalwrapper header,
+.modalwrapper footer{
+	height: 30px;
+}
+.mainwrapper{
+	flex:1;
+}
+.mainwrapper img{
+	width:100%;
+	height: auto;
+}
+.modalwrapper header{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.modalwrapper header h2{
+	text-align: left;
+	font-weight: 200;
+}
+.modalwrapper footer{
+	text-align: left;
+	font-family: sans-serif;
+	font-weight: 100;
+	padding-top: 30px;
+	padding-bottom: 40px;
+	
+}
+.modalDialog {
+
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+
+}
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modalDialog > div {
+
+	color: black;
+	width: 40%;
+	position: relative;
+	margin: 10% auto;
+	background: #fff;
+	padding: 9px 30px;
+	border-radius: 10px;
+}
+.close {
+	color:black;
+	line-height: 25px;
+	position: absolute;
+	right: 15px;
+	text-align: center;
+
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.close:hover { color:rgba(241,60,21,1); }
 
 .brown_div .left p{
 	text-align: justify;
@@ -368,7 +471,16 @@ a {
 	}
 }
 
+@media (max-width: 800px) and (min-width: 720px) {
+.img-a:hover  .opback, .opback:hover {
+		height:130px;
+	}
+	}
+
 @media (max-width: 720px) and (min-width: 600px) {
+	.img-a:hover  .opback, .opback:hover {
+		height:130px;
+	}
 	.img-container{
 		#background-color: yellow;
 		width: 44%;
@@ -382,6 +494,9 @@ a {
 }
 
 @media (max-width: 500px){
+	.img-a:hover  .opback, .opback:hover {
+		height:160px;
+	}
 	.brown_div{
 		height: 2280px;
 	}
@@ -392,5 +507,11 @@ a {
 		display: block;
 		margin: auto;
 	}
+	.modalwrapper footer{
+		font-size: 0.8em;
+	}
+	
+	
+
 
 }
