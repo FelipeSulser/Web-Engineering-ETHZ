@@ -133,11 +133,20 @@ a:hover #menu-icon {
 
 	
 }
+
 .simpletext{
 	background-color: white;
 	height: 200px;
 	height: auto;
 }
+
+#secondblock{
+	margin-top: 100px;
+	transition: margin 4s ease;
+}
+
+
+
 .simpletext h2{
 	
 	font-weight: 100;
@@ -176,6 +185,11 @@ a:hover #menu-icon {
 	color:white;
 	margin-top:30px;
 	font-size: 13px;
+}
+
+#best_ingredients{
+	margin-top: 100px;
+	transition: margin 4s ease;
 }
 
 .shadowed{

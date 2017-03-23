@@ -9,6 +9,7 @@ var past_events = false
 var contact_us = false
 var book_table = false
 var opening_hours = false
+var welcome = false
 
 
 function fade_in(){
@@ -16,13 +17,30 @@ function fade_in(){
 		la_place = true
 		console.log("la place")
 	}
+    if($('#secondblock').isOnScreen() && !welcome){
+        welcome = true
+        console.log("Welcome bitch")
+        $("#secondblock").css({
+            "margin-top" : "0px"
+        });
+    }
 	if($('#thirdblock').isOnScreen() && !high_quality){
 		high_quality = true
 		console.log("high_quality")
+        $("#thirdblock").css({
+            "margin-right" : "110px"
+        });
+        $("#thirdblock").animate({
+        	"margin-right" : "0px"
+		});
 	}
 	if($('#best_ingredients').isOnScreen() && !best_ingredients){
 		best_ingredients = true
 		console.log("best_ingredients")
+
+        $("#best_ingredients").css({
+            "margin-top" : "0px"
+        });
 	}
 	if($('#our_events').isOnScreen() && !our_events){
 		our_events = true
@@ -48,7 +66,6 @@ function fade_in(){
 		opening_hours = true
 		console.log("opening_hours")
 	}
-	
 }
 
 //All Credit goes to https://coderwall.com/p/fnvjvg/jquery-test-if-element-is-in-viewport
