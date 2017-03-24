@@ -7,7 +7,7 @@ ul{
 }
 
 
-#Contact{
+.Contact{
 	font-family: "helvetica neue", helvetica, arial, sans-serif;
 	
 	text-align:center;
@@ -15,7 +15,7 @@ ul{
 	padding: 0px 15%;
 	margin-bottom:70px;
 }
-#Contact h2{
+.Contact h2{
 	font-size:36px;
 }
 #dummy{
@@ -160,6 +160,7 @@ ul{
 	font-family: "helvetica neue", helvetica, arial, sans-serif;
 	font-weight:100;
 	text-align:center;
+	overflow: hidden;
 }
 
 #Impressium h2{
@@ -215,7 +216,7 @@ ul{
 		margin: 1% 0;
 	}
 
-	#Contact form{
+	.Contact form{
 		width: 100%;
 	}
 
