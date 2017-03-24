@@ -51,6 +51,7 @@ function changes(){
         	$("#sixthimgpop").attr("src","images/pic05.jpg");
 
 
+
 			break;
 
 		case 1:
@@ -69,6 +70,8 @@ function changes(){
         	$("#fifthimgpop").attr("src","images/Pasta/pic06.jpg");
         	$("#sixthimg").attr("src","images/Pasta/pic05.jpg");
         	$("#sixthimgpop").attr("src","images/Pasta/pic05.jpg");
+
+        	replace_text("WOOORKS","sbcjhbsdjhbcshdbcjhsdbchjbsdhcjhsdbcjh",$("#firstbox"), $("#openModal1"));
 
 			break;
 
@@ -292,6 +295,13 @@ $.fn.isOnScreen = function(){
 	bounds.bottom = bounds.top + this.outerHeight();
 	
 	return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+}
+
+function replace_text(header, body, firstbox, modalbox){
+	firstbox.find(".img-tag").text(header)
+	modalbox.find("h2").text(header)
+	modalbox.find("footer").text(body)
+
 }
 /*
 Every time we scrool we check whether a window is visible	
