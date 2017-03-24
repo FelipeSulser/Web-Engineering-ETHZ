@@ -99,6 +99,7 @@ a:hover #menu-icon {
 	justify-content:center;
 	flex-direction:column;
 	text-align: center;
+	overflow: hidden;
 }
 #firstblock h1{
 	top : 10px;
@@ -141,8 +142,11 @@ a:hover #menu-icon {
 }
 
 #secondblock{
+	display: block;
+	overflow: hidden;
+	text-align: right;
 	margin-top: 100px;
-	transition: margin 4s ease;
+	
 }
 
 
@@ -187,10 +191,7 @@ a:hover #menu-icon {
 	font-size: 13px;
 }
 
-#best_ingredients{
-	margin-top: 100px;
-	transition: margin 4s ease;
-}
+
 
 .shadowed{
 

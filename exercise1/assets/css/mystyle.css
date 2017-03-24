@@ -17,6 +17,7 @@ a {
 	color: white;
 	height: 760px;
 	text-align: center;
+	overflow: hidden;
 }
 
 .lower_brown_div{
@@ -24,6 +25,7 @@ a {
 	color: white;
 	height: 820px;
 	text-align: center;
+	overflow: hidden;
 }
 
 #right{
@@ -428,7 +430,7 @@ a {
 	}
 
 	#right{
-		width: 100%;
+		width: 100%;	
 	}
 
 	.brown_div{
