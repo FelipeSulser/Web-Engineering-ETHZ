@@ -144,7 +144,7 @@ a {
 	top: 0px;
 	text-decoration: none;
 	font-size: 18px;
-	border-bottom: 1px dotted white;
+	#border-bottom: 1px dotted white;
 	display: inline;
 
 }

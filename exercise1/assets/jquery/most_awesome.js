@@ -11,6 +11,118 @@ var book_table = false
 var opening_hours = false
 var welcome = false
 
+var statepics = 0
+var increasing = 1
+var execute = 1
+
+function changes(){
+	console.log(statepics)
+	if(execute === 0){
+		return;
+	}
+	$("#butt1").css({
+        	"background-color" : "transparent"
+        	});
+	$("#butt2").css({
+        	"background-color" : "transparent"
+        	});
+	$("#butt3").css({
+        	"background-color" : "transparent"
+        	});
+	$("#butt4").css({
+        	"background-color" : "transparent"
+        	});
+	switch(statepics){
+		case 0:
+			$("#butt1").css({
+        	"background-color" : "rgba(0, 255, 0, 0.2)"
+        	});
+        	$("#firstimg").attr("src","images/pic02.jpg");
+        	$("#firstimgpop").attr("src","images/pic02.jpg");
+        	$("#secondimg").attr("src","images/pic01.jpg");
+        	$("#secondimgpop").attr("src","images/pic01.jpg");
+        	$("#thirdimg").attr("src","images/pic04.jpg");
+        	$("#thirdimgpop").attr("src","images/pic04.jpg");
+        	$("#fourthimg").attr("src","images/pic03.jpg");
+        	$("#fourthimgpop").attr("src","images/pic03.jpg");
+        	$("#fifthimg").attr("src","images/pic06.jpg");
+        	$("#fifthimgpop").attr("src","images/pic06.jpg");
+        	$("#sixthimg").attr("src","images/pic05.jpg");
+        	$("#sixthimgpop").attr("src","images/pic05.jpg");
+
+
+			break;
+
+		case 1:
+        	$("#butt2").css({
+        	"background-color" : "rgba(0, 255, 0, 0.2)"
+        	});
+        	$("#firstimg").attr("src","images/Pasta/pic02.jpg");
+        	$("#firstimgpop").attr("src","images/Pasta/pic02.jpg");
+        	$("#secondimg").attr("src","images/Pasta/pic01.jpg");
+        	$("#secondimgpop").attr("src","images/Pasta/pic01.jpg");
+        	$("#thirdimg").attr("src","images/Pasta/pic04.jpg");
+        	$("#thirdimgpop").attr("src","images/Pasta/pic04.jpg");
+        	$("#fourthimg").attr("src","images/Pasta/pic03.jpg");
+        	$("#fourthimgpop").attr("src","images/Pasta/pic03.jpg");
+        	$("#fifthimg").attr("src","images/Pasta/pic06.jpg");
+        	$("#fifthimgpop").attr("src","images/Pasta/pic06.jpg");
+        	$("#sixthimg").attr("src","images/Pasta/pic05.jpg");
+        	$("#sixthimgpop").attr("src","images/Pasta/pic05.jpg");
+
+			break;
+
+		case 2:
+			$("#butt3").css({
+        	"background-color" : "rgba(0, 255, 0, 0.2)"
+        	});
+        	$("#firstimg").attr("src","images/Meat_Fish/pic02.jpg");
+        	$("#firstimgpop").attr("src","images/Meat_Fish/pic02.jpg");
+        	$("#secondimg").attr("src","images/Meat_Fish/pic01.jpg");
+        	$("#secondimgpop").attr("src","images/Meat_Fish/pic01.jpg");
+        	$("#thirdimg").attr("src","images/Meat_Fish/pic04.jpg");
+        	$("#thirdimgpop").attr("src","images/Meat_Fish/pic04.jpg");
+        	$("#fourthimg").attr("src","images/Meat_Fish/pic03.jpg");
+        	$("#fourthimgpop").attr("src","images/Meat_Fish/pic03.jpg");
+        	$("#fifthimg").attr("src","images/Meat_Fish/pic06.jpg");
+        	$("#fifthimgpop").attr("src","images/Meat_Fish/pic06.jpg");
+        	$("#sixthimg").attr("src","images/Meat_Fish/pic05.jpg");
+        	$("#sixthimgpop").attr("src","images/Meat_Fish/pic05.jpg");
+
+			break;
+
+		case 3:
+			$("#butt4").css({
+        	"background-color" : "rgba(0, 255, 0, 0.2)"
+        	});
+        	$("#firstimg").attr("src","images/Dessert/pic02.jpg");
+        	$("#firstimgpop").attr("src","images/Dessert/pic02.jpg");
+        	$("#secondimg").attr("src","images/Dessert/pic01.jpg");
+        	$("#secondimgpop").attr("src","images/Dessert/pic01.jpg");
+        	$("#thirdimg").attr("src","images/Dessert/pic04.jpg");
+        	$("#thirdimgpop").attr("src","images/Dessert/pic04.jpg");
+        	$("#fourthimg").attr("src","images/Dessert/pic03.jpg");
+        	$("#fourthimgpop").attr("src","images/Dessert/pic03.jpg");
+        	$("#fifthimg").attr("src","images/Dessert/pic06.jpg");
+        	$("#fifthimgpop").attr("src","images/Dessert/pic06.jpg");
+        	$("#sixthimg").attr("src","images/Dessert/pic05.jpg");
+        	$("#sixthimgpop").attr("src","images/Dessert/pic05.jpg");
+
+			break;
+
+
+
+
+	}
+	statepics = statepics + 1 * increasing
+	if(3 === statepics){
+		increasing = -1
+	}
+	if(0 === statepics){
+		increasing = 1
+	}
+
+}
 
 function fade_in(){
 	if($('#la_place').isOnScreen() && !la_place){
@@ -163,6 +275,7 @@ function fade_in(){
             "margin-right" : "0px"
 		});
 	}
+
 }
 
 //All Credit goes to https://coderwall.com/p/fnvjvg/jquery-test-if-element-is-in-viewport
@@ -174,7 +287,6 @@ $.fn.isOnScreen = function(){
 	};
 	viewport.right = viewport.left + win.width();
 	viewport.bottom = viewport.top + win.height();
-	
 	var bounds = this.offset();
 	bounds.right = bounds.left + this.outerWidth();
 	bounds.bottom = bounds.top + this.outerHeight();
@@ -190,6 +302,17 @@ $(window).scroll(function() {
 
 $(document).ready(function(){
 	fade_in()
+	setInterval(changes, 2000);
+	$( ".my-img" ).click(function() {
+		execute = 0
+  		
+	});
+	$( ".close" ).click(function() {
+		execute = 1
+  		
+	});
+
+
 });
 
 
