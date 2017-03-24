@@ -16,7 +16,6 @@ var increasing = 1
 var execute = 1
 
 function changes(){
-	console.log(statepics)
 	if(execute === 0){
 		return;
 	}
@@ -406,8 +405,9 @@ $(window).scroll(function() {
 $(document).ready(function(){
 	fade_in()
 	setInterval(changes, 2000);
-	$( ".my-img" ).click(function() {
+	$( ".img-container" ).click(function() {
 		execute = 0
+		console.log("clicked")
   		
 	});
 	$( ".close" ).click(function() {
