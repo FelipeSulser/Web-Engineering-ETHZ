@@ -234,7 +234,7 @@ function fade_in(){
 	}
     if($('#secondblock').isOnScreen() && !welcome){
         welcome = true
-        console.log("Welcome bitch")
+        console.log("Welcome")
         $("#secondblock").css({
             "margin-top" : "100px"
         });
