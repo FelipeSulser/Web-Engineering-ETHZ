@@ -477,6 +477,9 @@ a {
 .img-a:hover  .opback, .opback:hover {
 		height:130px;
 	}
+	.modalwrapper footer{
+		font-size: 0.8em;
+	}
 	}
 
 @media (max-width: 720px) and (min-width: 600px) {

@@ -126,14 +126,14 @@ function changes(){
 		var h1 = "Salmon"
 		var h2 = "Herring"
 		var h3 = "Vegetables Bath"
-		var h4 = "Ravioli"
+		var h4 = "Kabeljau"
 		var h5 = "Aspargus Wonder"
 		var h6 = "Chef's Creation"
 		
 		var t1 = "Delicious salmon with limes and green pesto. Perfect to treat your taste buds !"
 		var t2 = "Figs and herring. This is meant to treat you because you only deserve the best."
 		var t3 = "Surrounded by vegetables this is our offer for the health concious customer. "
-		var t4 = "Our home made ravioli with some freshly catched salmon is are sure to amaze you."
+		var t4 = "Delicious kabeljau from Nordsee"
 		var t5 = "The celebrate the spring we have seasonal offer of aspargus which you can enjoy for a limited time only." 
 		var t6 = "The chefs personal creation. Salmon with zucchini and potatoes is our restaurants speciality. Be sure to try it."
 
@@ -165,19 +165,19 @@ function changes(){
 
 		case 3:
 
-		var h1 = ""
-		var h2 = ""
-		var h3 = ""
-		var h4 = ""
-		var h5 = ""
-		var h6 = ""
+		var h1 = "Mochi rolls"
+		var h2 = "Raspberry pie"
+		var h3 = "Brownies"
+		var h4 = "Pudding"
+		var h5 = "Pralines"
+		var h6 = "Macarons"
 		
-		var t1 = ""
-		var t2 = ""
-		var t3 = ""
-		var t4 = ""
-		var t5 = "" 
-		var t6 = ""
+		var t1 = "Sweet rolls that go really well with a jasmin tea"
+		var t2 = "Delicious pie served with a secret sweet sauce"
+		var t3 = "Brown brownies produced by Brown Browning "
+		var t4 = "Served with strawberry sauce"
+		var t5 = "Pralines from Sprlüngli" 
+		var t6 = "Delicious treat from Luxemburg"
 
 		
 			$("#butt4").css({
