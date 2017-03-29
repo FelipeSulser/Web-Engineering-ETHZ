@@ -404,7 +404,7 @@ $(window).scroll(function() {
 
 $(document).ready(function(){
 	fade_in()
-	setInterval(changes, 2000);
+	setInterval(changes, 4000);
 	$( ".img-container" ).click(function() {
 		execute = 0
 		console.log("clicked")
