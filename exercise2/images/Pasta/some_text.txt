@@ -1,0 +1,13 @@
+var h1= "Spaghetti Carbonara"
+            var h2 = "Penne Tuna"
+            var h3 = "Cannelloni"
+            var h4 = "Lasagne"
+            var h5 = "Cheese Macaroni"
+            var h6 = "Spaghetti Arrabitata"
+
+            var t1= "Homemade Spaghetti Carbonara. Creamy and delicious."
+            var t2 = "he combination of tuna, anchovies, capers, garlic, and parsley is traditional in Mediterranean cooking, particularly in southern France."
+            var t3 = "Cannelloni (Italian for large reeds) are a cylindrical type of pasta generally served baked with a filling and covered by a sauce in Italian cuisine."
+            var t4 = "Lasagne are wide, flat-shaped pasta, and possibly one of the oldest types of pasta."
+            var t5 = "Macaroni and cheese—also called mac and cheese in American is a dish of English origin, consisting of cooked macaroni pasta and a cheese sauce, most commonly cheddar."
+            var t6 = "Arrabbiata sauce, or sugo all'arrabbiata in Italian, is a spicy sauce for pasta made from garlic, tomatoes, and red chili peppers cooked in olive oil. Arrabbiata literally means "angry" in Italian; the name of the sauce refers to the spiciness of the chili peppers."

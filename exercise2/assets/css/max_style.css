@@ -1,0 +1,279 @@
+h2{
+	font-weight:100;
+}
+
+ul{
+	padding: 0px;
+}
+
+
+.Contact{
+	font-family: "helvetica neue", helvetica, arial, sans-serif;
+	
+	text-align:center;
+	color:rgba(0,0,0,0.5); 
+	padding: 0px 15%;
+	margin-bottom:70px;
+}
+.Contact h2{
+	font-size:36px;
+}
+#dummy{
+	padding-right: 1px;
+	padding-left: 1px;
+}
+
+#Contact_row{
+	clear:both;
+	text-align:center;
+	margin: 0px 10px 20px 10px;
+}
+#Contact_row div{
+	display:inline;
+}
+#Contact_row input{
+	width:40%;
+	height: 35px;
+	padding: 10px 0px 10px 20px;
+        border-radius: 5px;
+	background-color:rgba(0,0,0,0.05);
+        font-size: 14px;
+	
+        border: none;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+
+
+#Contact_row textarea{
+	width:87%;
+	height: 200px;
+	padding: 10px 0px 10px 20px;
+        border-radius: 5px;	
+        border: none;
+	background-color:rgba(0,0,0,0.05);
+        font-size: 14px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+#Contact_button li{
+	display:inline;
+	padding:5px;
+}
+
+#Contact_button input{
+	font-size: 16px;
+	background-color: white;
+	color:rgba(0,0,0,0.5);
+	padding: 15px 40px;
+	border: 1px solid gray;		
+	border-radius: 4px;
+	text-decoration:none;
+	margin: 1% 0;
+}
+
+#Contact_button input:hover{
+	color:white;
+	background-color:rgba(0,0,0,0.75);
+}
+
+
+
+#Booking{
+	font-family: "helvetica neue", helvetica, arial, sans-serif;
+	font-weight:100;
+	width: 100%;
+	text-align:center;
+	background-image: url("../../images/book-table.jpg");
+	background-position: center; 
+}
+#Booking_inner{
+	color: white;
+	width: 50%;
+	display:inline-block;
+	text-align:center;
+	background-color: rgba(0,0,0,0.5);
+}
+
+#Booking_inner h2{
+	font-size: 30px;
+	padding: 30px 0px;
+	margin: 0px;
+}
+
+#Booking_inner input[value="Book"]{
+	color:white;
+	background-color: #555555;
+	text-align: center;
+	border: none;
+	text-decoration: none;
+	font-size: 16px;	
+	border-radius: 4px;
+	padding: 15px 42px;
+	margin: 0px 0px 20px;	
+}
+
+#Element_set{
+	clear:both;
+	text-align:center;
+	margin: 0px 10px 20px 10px;
+	
+}
+
+#Element_set div{
+	display:inline;
+       
+}
+
+#Element_set input{
+	width:40%;
+	height: 35px;
+	padding: 10px 0px 10px 20px;
+        border-radius: 5px;
+        border: none;
+        color: #576366;
+        font-size: 14px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+#Element_set textarea{
+	width:90%;
+	height: 200px;
+	padding: 20px 0px 10px 20px;
+	border-radius: 5px;
+        border: none;
+        color: #576366;
+        font-size: 14px;
+}
+
+
+
+#Impressium{	
+	font-size: 26px;
+	color:rgba(0,0,0,0.5); 
+	width: 100%;
+	padding: 100px 0px 50px ;
+	background-color:rgba(0,0,0,0.025); 
+	font-family: "helvetica neue", helvetica, arial, sans-serif;
+	font-weight:100;
+	text-align:center;
+	overflow: hidden;
+}
+
+#Impressium h2{
+	font-size: 30px;
+	margin: 0 auto 50px;
+}
+
+#Impressium p{
+	font-size: 15px;
+}
+
+
+#Opening_Hours{
+	text-align:left;
+	display:inline-block;
+	padding: 0 50px;
+}
+
+#Contacts{
+	display:inline-block;
+	padding: 0 50px;
+}
+
+#Contacts p{
+	text-align:left;
+}
+
+#Footer{
+	background-color:rgba(0,0,0,0.025); 
+	font-size: 13px;
+	color:rgba(0,0,0,0.25); 
+	width: 100%;
+	padding: 10px 0px 200px ;
+	text-align:center;
+	
+}
+
+#Footer li{
+	display:inline-block;
+	margin: 0 3px;
+	font-family: sans-serif;
+}
+
+#left_li{
+	padding-right:5px;
+	border-right: 1px solid lightgrey;
+}
+
+/* first break */
+@media (max-width: 720px) {
+	#Contact_row input{
+		width:80%;
+		margin: 1% 0;
+	}
+
+	.Contact form{
+		width: 100%;
+	}
+
+	#Contact_row textarea{
+		width: 80%;
+	}
+
+	#Booking_inner{
+		width: 100%;
+	}
+
+	#Element_set input{
+		width:80%;
+		margin-bottom: 1%;
+	}
+
+	#Element_set textarea{
+		width:80%;
+	}
+
+	#Opening_Hours{
+		border: 1px solid black;
+		padding: 5% 30%;
+		margin-bottom: 5%;
+	}
+
+	#Contacts{
+		border: 1px solid black;
+		padding: 5% 29%;
+		margin-bottom: 5%;
+	}
+}
+
+@media (max-width: 886px) and (min-width: 720px) {
+
+	#Booking_inner{
+		#width: 80%;
+	}
+
+	#Element_set input{
+		width:80%;
+		margin-bottom: 1%;
+	}
+
+	#Element_set textarea{
+		width:80%;
+	}
+
+	#Opening_Hours{
+		border: 1px solid black;
+		padding: 5% 30%;
+		margin-bottom: 5%;
+	}
+
+	#Contacts{
+		border: 1px solid black;
+		padding: 5% 29%;
+		margin-bottom: 5%;
+	}
+}
