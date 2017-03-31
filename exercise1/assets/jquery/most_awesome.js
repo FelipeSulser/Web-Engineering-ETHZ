@@ -209,13 +209,6 @@ function changes(){
 
 
 	}
-	statepics = statepics + 1 * increasing
-	if(3 === statepics){
-		increasing = -1
-	}
-	if(0 === statepics){
-		increasing = 1
-	}
 
 }
 
@@ -395,14 +388,35 @@ function replace_text(header, body, firstbox, modalbox){
 	modalbox.find("footer").text(body)
 
 }
+
+function log(txt) {
+  $("#aboutid").html(" <b>" + txt + "</b> px")
+}
 /*
 Every time we scrool we check whether a window is visible	
 */
 $(window).scroll(function() {
 	fade_in()
+	var eTop = $('#right').offset().top; //get the offset top of the element
+  //log(eTop - $(window).scrollTop()); //position of the ele w.r.t window
+  var totalshift = eTop - $(window).scrollTop();
+  if(totalshift > 160){
+  	statepics = 0;
+  }
+  if(totalshift < 160 && totalshift > -1){
+  	statepics = 1;
+  }
+  if(totalshift< -1 && totalshift > -130){
+  	statepics = 2;
+  }
+  if(totalshift < -250){
+  	statepics = 3;
+  }
+  changes();
 });
 
 $(document).ready(function(){
+
 	fade_in()
 	setInterval(changes, 4000);
 	$( ".img-container" ).click(function() {
