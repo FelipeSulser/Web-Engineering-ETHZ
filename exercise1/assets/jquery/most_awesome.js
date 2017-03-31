@@ -412,6 +412,21 @@ $(window).scroll(function() {
   if(totalshift < -250){
   	statepics = 3;
   }
+  var windowsize = $(window).width();
+  if(windowsize < 500){
+	  if(totalshift > 6){
+	  	statepics = 0;
+	  }
+	  if(totalshift < 119 && totalshift > -451){
+	  	statepics = 1;
+	  }
+	  if(totalshift< -451 && totalshift > -787){
+	  	statepics = 2;
+	  }
+	  if(totalshift < -787){
+	  	statepics = 3;
+	  }
+  }
   changes();
 });
 

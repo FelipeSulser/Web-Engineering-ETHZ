@@ -13,9 +13,8 @@ var welcome = false
 
 var statepics = 0
 var increasing = 1
-var execute = 0
-
-var path = "http://localhost:8888/wp-content/themes/Archive-2"
+var execute = 1
+var path = "http://localhost:8888/wp-content/themes/Archive"
 
 function changes(){
 	if(execute === 0){
@@ -211,13 +210,6 @@ function changes(){
 
 
 	}
-	statepics = statepics + 1 * increasing
-	if(3 === statepics){
-		increasing = -1
-	}
-	if(0 === statepics){
-		increasing = 1
-	}
 
 }
 
@@ -397,26 +389,64 @@ function replace_text(header, body, firstbox, modalbox){
 	modalbox.find("footer").text(body)
 
 }
+
+function log(txt) {
+  jQuery("#aboutid").html(" <b>" + txt + "</b> px")
+}
 /*
 Every time we scrool we check whether a window is visible	
 */
 jQuery(window).scroll(function() {
 	fade_in()
+	var eTop = jQuery('#right').offset().top; //get the offset top of the element
+  log(eTop - jQuery(window).scrollTop()); //position of the ele w.r.t window
+  var totalshift = eTop - jQuery(window).scrollTop();
+  if(totalshift > 160){
+  	statepics = 0;
+  }
+  if(totalshift < 160 && totalshift > -1){
+  	statepics = 1;
+  }
+  if(totalshift< -1 && totalshift > -130){
+  	statepics = 2;
+  }
+  if(totalshift < -250){
+  	statepics = 3;
+  }
+
+  var windowsize = jQuery(window).width();
+  if(windowsize < 500){
+	  if(totalshift > 6){
+	  	statepics = 0;
+	  }
+	  if(totalshift < 119 && totalshift > -451){
+	  	statepics = 1;
+	  }
+	  if(totalshift< -451 && totalshift > -787){
+	  	statepics = 2;
+	  }
+	  if(totalshift < -787){
+	  	statepics = 3;
+	  }
+  }
+  changes();
 });
 
-
 jQuery(document).ready(function(){
+
 	fade_in()
 	setInterval(changes, 4000);
 	jQuery( ".img-container" ).click(function() {
 		execute = 0
+		console.log("clicked")
   		
 	});
 	jQuery( ".close" ).click(function() {
 		execute = 1
   		
 	});
-	
+
+
 });
 
 
