@@ -13,7 +13,7 @@ var welcome = false
 
 var statepics = 0
 var increasing = 1
-var execute = 1
+var execute = 0
 
 var path = "http://localhost:8888/wp-content/themes/Archive-2"
 
@@ -404,20 +404,19 @@ jQuery(window).scroll(function() {
 	fade_in()
 });
 
+
 jQuery(document).ready(function(){
 	fade_in()
 	setInterval(changes, 4000);
 	jQuery( ".img-container" ).click(function() {
 		execute = 0
-		console.log("clicked")
   		
 	});
 	jQuery( ".close" ).click(function() {
 		execute = 1
   		
 	});
-
-
+	
 });
 
 

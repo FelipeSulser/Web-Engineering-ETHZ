@@ -15,9 +15,9 @@
 		
 	</head>
 	<body id="container">
-		
 
 		<!-- Header -->
+
 			<a href="index.html"  ><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" alt="" id = "hidden"> </a>
 					<div id = "header">
 						<nav id="nav">
@@ -476,4 +476,7 @@
 			</div>
 
 	</body>
+	<footer>
+
+	</footer>
 </html>
