@@ -15,6 +15,8 @@ function your_php_code( $wp_customize ) {
 }
 add_action( 'customize_register', 'your_php_code');
 
+wp_enqueue_style ('theme-style', get_template_directory_uri().'/assets/css/aggregated.css');
+
 function mytheme_customizer_live_preview()
 {
 	wp_enqueue_script( 

@@ -48,11 +48,18 @@
 					<a href="#book" >Book a Table</a>
 		<!-- First About-->
 			</div>
+			 <div id="secondblock" class="simpletext">
+			<?php $the_query = new WP_Query( 'page_id=36' ); ?>
+
+			<?php while ($the_query -> have_posts()) : $the_query -> the_post();  ?>
+				<h2><?php the_title(); ?></h2>
+                 <?php the_content(); ?>
+
+
+     <?php endwhile;?>
+ </div>
 				
-					<div id="secondblock" class="simpletext" >
-						<h2>Welcome</h2>
-						<p>LaPlace Restaurant was founded in May of 2015. The cuisine we serve is created with the utmost attention to details. Our emphasis is on providing fresh, locally sourced, exquisite food. As such our menus change on a regular basis, allowing us to offer you mouth watering, perfectly prepared dishes.<br />
-					</div>
+					
 				
 				
 				
