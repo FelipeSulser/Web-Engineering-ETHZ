@@ -14,9 +14,13 @@ var welcome = false
 var statepics = 0
 var increasing = 1
 var execute = 1
-var path = "http://localhost:8888/wp-content/themes/Archive"
+
+var path = ""
+//var path = "http://localhost:8888/wp-content/themes/Archive"
+
 
 function changes(){
+
 	if(execute === 0){
 		return;
 	}
@@ -433,7 +437,7 @@ jQuery(window).scroll(function() {
 });
 
 jQuery(document).ready(function(){
-
+	path = templateUrl
 	fade_in()
 	setInterval(changes, 4000);
 	jQuery( ".img-container" ).click(function() {

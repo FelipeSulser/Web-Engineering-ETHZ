@@ -1,21 +1,5 @@
 <?php
-function your_php_code( $wp_customize ) {
-	$wp_customize->add_setting("Event_Menu_Background", array(
-	'default' => '#423433',	
-	'transport'=>'postMessage',
-	));
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
-	'label'      => 'Event and Menu Background Color',
-	'section'    => 'Color_Image',
-	'settings'   => 'Event_Menu_Background',
-	)));
-	$wp_customize->add_section( 'Color_Image' , array(
-	'title'      => 'Images/Color',
-	));	
-}
-add_action( 'customize_register', 'your_php_code');
 
-wp_enqueue_style ('theme-style', get_template_directory_uri().'/assets/css/aggregated.css');
 
 function mytheme_customizer_live_preview()
 {
@@ -28,6 +12,7 @@ function mytheme_customizer_live_preview()
 	);
 }
 add_action( 'customize_preview_init', 'mytheme_customizer_live_preview' );
+
 
 /**
  * Contains methods for customizing the theme customization screen.

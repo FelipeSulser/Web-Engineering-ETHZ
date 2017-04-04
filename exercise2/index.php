@@ -14,6 +14,9 @@
 		<script src="<?php bloginfo('template_directory'); ?>/assets/jquery/most_awesome.js"></script>
 		
 	</head>
+	<script type="text/javascript">
+var templateUrl = '<?= get_bloginfo("template_url"); ?>';
+</script>
 	<body id="container">
 
 		<!-- Header -->
@@ -49,36 +52,48 @@
 		<!-- First About-->
 			</div>
 			 <div id="secondblock" class="simpletext">
-			<?php $the_query = new WP_Query( 'page_id=36' ); ?>
+			<?php $the_query = new WP_Query( array( 'pagename' => 'my-page' ) ); ?>
 
 			<?php while ($the_query -> have_posts()) : $the_query -> the_post();  ?>
 				<h2><?php the_title(); ?></h2>
                  <?php the_content(); ?>
 
 
-     <?php endwhile;?>
- </div>
+    	    <?php endwhile;?>
+ 			</div>
 				
 					
 				
 				
 				
-		<!-- Second About -->		
-			
-				
-					<div id="thirdblock" class="parallax" >
-						<h2 class="shadowed" >High Quality Cuisine</h2>
-						<p class="shadowed">Our cuisine is a melting pot of different cultures which have come together to form a unique blend of flavours and techniques.<br />
-					</div>
+		<!-- Second About -->	
+		<div id="thirdblock" class="parallax" >	
+				<?php $the_query = new WP_Query( array( 'pagename' => 'high-quality-cuisine' ) ); ?>
+
+			<?php while ($the_query -> have_posts()) : $the_query -> the_post();  ?>
+				<h2 class="shadowed"><?php the_title(); ?></h2>
+               <?php the_content(); ?>
+
+
+     <?php endwhile;?>
+	 </div>
+					
+					
 					
 			
 		<!-- Third About -->				
 		
 				
-					<div class="simpletext" id = "best_ingredients">
-						<h2>Only the Best Ingredients</h2>
-						<p>It's vital to our operation to make sure everybody is aware of the quality of the ingredients we use. As the choices we make in terms of which supplies we buy for our recipes is intrinsic to factors such as the healthiness of the food we make to the price you pay for it. That's why on our menus you find the origins of each of our ingredients.<br />
-					</div>
+	<div class="simpletext" id = "best_ingredients">
+		<?php $the_query = new WP_Query( array( 'pagename' => 'only-the-best-ingredients' ) ); ?>
+
+			<?php while ($the_query -> have_posts()) : $the_query -> the_post();  ?>
+				<h2><?php the_title(); ?></h2>
+               <?php the_content(); ?>
+
+
+     <?php endwhile;?>
+	</div>
 				
 				
 
@@ -262,14 +277,17 @@
 			
 
 		<!-- Third -->
-			
-				
-					<div class="simpletext" id = "our_events">
-						<h2>Our Events</h2>
-						<p>In our Philosophy, a restaurant is not only a place where to eat but also to communicate and know new people. For these reasons we organize various events every month.<br />
-						</p>
-					</div>
-				
+				<div class="simpletext" id = "our_events">
+
+		<?php $the_query = new WP_Query( array( 'pagename' => 'our-events' ) ); ?>
+
+			<?php while ($the_query -> have_posts()) : $the_query -> the_post();  ?>
+				<h2><?php the_title(); ?></h2>
+               <?php the_content(); ?>
+
+     <?php endwhile;?>
+	</div>
+
 					<div >
 					<div class="lower_brown_div">
 					<div class="filling-div-20"></div>
@@ -483,7 +501,4 @@
 			</div>
 
 	</body>
-	<footer>
-
-	</footer>
 </html>
