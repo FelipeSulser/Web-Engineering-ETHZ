@@ -1,6 +1,14 @@
 <?php
 
 
+add_action( 'admin_head', 'showhiddencustomfields' );
+
+function showhiddencustomfields() {
+  echo "<style type='text/css'>#postcustom .hidden { display: table-row; }</style>
+";
+}
+
+
 function mytheme_customizer_live_preview()
 {
 	wp_enqueue_script( 
@@ -12,6 +20,7 @@ function mytheme_customizer_live_preview()
 	);
 }
 add_action( 'customize_preview_init', 'mytheme_customizer_live_preview' );
+
 
 
 /**
