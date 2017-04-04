@@ -106,7 +106,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 				<div>
 					<div >
 						<div >
-							<div class="brown_div">
+							<div id="browndiv" class="brown_div" style="background-color: #<?php background_color(); ?>">
 								<div class="left">
 									<div class="filling-div-20"></div>
 									<div class="filling-div-20"></div>
@@ -289,7 +289,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 	</div>
 
 					<div >
-					<div class="lower_brown_div">
+					<div id="lowerbrown" class="lower_brown_div" style="background-color: #<?php background_color(); ?>">
 					<div class="filling-div-20"></div>
 					
 						<div id = "upcoming_events">
@@ -536,6 +536,5 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 					</ul>
 				</div>
 			</div>
+			<?php get_footer(); ?>
 
-	</body>
-</html>
