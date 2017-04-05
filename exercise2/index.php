@@ -106,7 +106,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 				<div>
 					<div >
 						<div >
-							<div id="browndiv" class="brown_div" style="background-color: #<?php background_color(); ?>">
+							<div id="browndiv" class="brown_div">
 								<div class="left">
 									<div class="filling-div-20"></div>
 									<div class="filling-div-20"></div>
@@ -289,7 +289,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 	</div>
 
 					<div >
-					<div id="lowerbrown" class="lower_brown_div" style="background-color: #<?php background_color(); ?>">
+					<div id="lowerbrown" class="lower_brown_div">
 					<div class="filling-div-20"></div>
 					
 						<div id = "upcoming_events">
