@@ -80,13 +80,37 @@
    }
 
 
+
+
 add_action( 'customize_preview_init' ,  'live_preview' );
 // Setup the Theme Customizer settings and controls...
 add_action( 'customize_register' , 'register'  );
 // Output custom CSS to live site
 add_action( 'wp_footer' ,  'header_output'  );
 
-// Output custom CSS to live site
-// Enqueue live preview javascript in Theme Customizer admin screen
+$args = array(
+  'width' => 1600,
+  'height' => 650,
+  'default-image' => get_template_directory_uri(). '/images/header.jpg',
+  'uploads' => true,
+  );
+
+function add_custom_image_header_ours( $wp_head_callback, $admin_head_callback, $admin_preview_callback = '' ) {
+    _deprecated_function( __FUNCTION__, '3.4.0', 'add_theme_support( \'custom-header\', $args )' );
+    $args = array(
+        'wp-head-callback'    => $wp_head_callback,
+        'admin-head-callback' => $admin_head_callback,
+        'width' => 1600,
+        'height' => 650,
+        'default-image' => get_template_directory_uri(). '/images/header.jpg',
+        'uploads' => true
+
+    );
+    if ( $admin_preview_callback )
+        $args['admin-preview-callback'] = $admin_preview_callback;
+    return add_theme_support( 'custom-header', $args );
+}
+add_custom_image_header_ours('custom_header',$args);
+
 
 ?>

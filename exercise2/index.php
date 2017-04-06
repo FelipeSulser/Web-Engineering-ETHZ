@@ -46,7 +46,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 				</h1>
 			
 			  </div>
-			  <div id="firstblock">
+			  <div id="firstblock" style="background-image: url(<?php header_image(); ?>)">
 					<h1 id = la_place> <?php echo get_bloginfo('name'); ?> </h1>
 					<a href="#book" >Book a Table</a>
 		<!-- First About-->
