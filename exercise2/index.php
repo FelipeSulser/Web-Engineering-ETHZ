@@ -15,8 +15,31 @@
 		
 	</head>
 	<script type="text/javascript">
-var templateUrl = '<?= get_bloginfo("template_url"); ?>';
+	var templateUrl = '<?= get_bloginfo("template_url"); ?>';
+
 </script>
+
+<!-- fetch all the posts -->
+<?php
+	$args = array(
+		'numberposts'  => -1,
+	);
+	$my_posts = get_posts($args);
+	$metas = array();
+	foreach ($my_posts as &$post){
+		$idval = $post->ID;
+		$meta = get_post_meta($idval);
+		array_push($metas, $meta);
+	}
+	unset($post);
+	
+?>
+
+<script type="text/javascript">
+    var allposts = <?php echo json_encode($my_posts); ?>;
+    var metas = <?php echo json_encode($metas); ?>;
+</script>
+
 	<body id="container">
 
 		<!-- Header -->
@@ -126,6 +149,8 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 									<div class="img-container">
 
 										<a id="firstbox" class="img-a" href="#openModal1">
+
+
 											<img id="firstimg" class="my-img" src="<?php bloginfo('template_directory'); ?>/images/pic02.jpg">
 											<div class="opback">
 											<div class="img-tag" id="work">Green Rolls</div>
