@@ -88,7 +88,7 @@ a:hover #menu-icon {
 	height: 400px;
 	width:100%;
 	#max-width: 100%;
-	background-image: url('../../images/header.jpg');
+	#background-image: url('../../images/header.jpg');
 	background-size: cover;
 	#zoom: -1.5;
 	background-repeat: no-repeat;

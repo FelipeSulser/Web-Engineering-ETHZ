@@ -46,7 +46,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 				</h1>
 			
 			  </div>
-			  <div id="firstblock">
+			  <div id="firstblock" style="background-image: url(<?php header_image(); ?>)">
 					<h1 id = la_place> <?php echo get_bloginfo('name'); ?> </h1>
 					<a href="#book" >Book a Table</a>
 		<!-- First About-->
@@ -106,7 +106,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 				<div>
 					<div >
 						<div >
-							<div class="brown_div">
+							<div id="browndiv" class="brown_div">
 								<div class="left">
 									<div class="filling-div-20"></div>
 									<div class="filling-div-20"></div>
@@ -289,7 +289,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 	</div>
 
 					<div >
-					<div class="lower_brown_div">
+					<div id="lowerbrown" class="lower_brown_div">
 					<div class="filling-div-20"></div>
 					
 						<div id = "upcoming_events">
@@ -473,32 +473,68 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 				</div>
 				</div>
 		<!-- Footer -->
-			
+
 			<div id="Impressium">
 				<div id="Opening_Hours" class="leftrightimp" >
 					<h2> Opening Hour </h2>
-					<p> <b> MONDAY : </b>Closed </p> </br>
-					<p> <b>TUE-FRI : </b>8am - 12am</p> </br>
-					<p> <b>SAT-SUN : </b>7am - 1am</p> </br>
-					<p> <b>HOLYDAYS : </b>12pm-12am</p> </br>
+					<?php
+					$the_slug = 'opening-hours';
+					$args = array(
+					  'name'        => $the_slug,
+					  'post_type'   => 'post',
+					  'post_status' => 'publish',
+					  'numberposts' => 1
+					);
+
+					$my_posts = get_posts($args);
+					if( $my_posts ) :
+						$idval = $my_posts[0]->ID;
+						$meta = get_post_meta($idval);
+					
+						foreach($meta as $key=>$val){
+							if($key == '_edit_last' || $key == '_edit_lock' || $key == '_wp_old_slug')continue;
+							echo '<p> <b>'. $key.' : </b>'. $val[0].'</p> </br>';
+						}
+					endif;
+					?>
+				
 				</div>
 				<div  id="Contacts" class="leftrightimp">
 					<h2>  Contacts </h2>
-					<p> <b>ADDRESS : </b>4578 Zurich</p> </br>
-					<p> Badenerstrasse 500</p> </br>
-					<p> <b>PHONE : </b>(606) 144-0100 </p> </br>
-					<p> <b>EMAIL : </b>admin@laplace.com</p> </br>
+					<?php
+					$the_slug = 'contacts';
+					$args = array(
+					  'name'        => $the_slug,
+					  'post_type'   => 'post',
+					  'post_status' => 'publish',
+					  'numberposts' => 1
+					);
+
+					$my_posts = get_posts($args);
+					if( $my_posts ) :
+						$idval = $my_posts[0]->ID;
+						$meta = get_post_meta($idval);
+					
+						foreach($meta as $key=>$val){
+							if($key == '_edit_last' || $key == '_edit_lock' || $key == '_wp_old_slug')continue;
+							if($key == 'DISCARD'){
+								echo '<p>'.$val[0].'</p></br>';
+							}else{
+								echo '<p> <b>'. $key.' : </b>'. $val[0].'</p> </br>';
+							}
+							
+						}
+					endif;
+					?>
+	
 				</div>	
 			</div>	
 				<div id="Footer">
 					<ul >
-						<?php
-		echo bloginfo('template_directory')
-		?>
+					
 						<li id = "left_li">&copy; Untitled. All rights reserved.</li><li>Design: ETH Zurich, Globis Group</li>
 					</ul>
 				</div>
 			</div>
+			<?php get_footer(); ?>
 
-	</body>
-</html>
