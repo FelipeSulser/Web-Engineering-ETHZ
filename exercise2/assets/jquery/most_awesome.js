@@ -20,10 +20,21 @@ var page_context = {}
 var zoomed = 0;
 var lastData = null;
 var lastcached = "";
+var expanded = false
 //var path = "http://localhost:8888/wp-content/themes/Archive"
 
+
+function reset_css(){
+	jQuery('.lower_brown_div').removeAttr("Style")
+	if(expanded){
+		jQuery('.lower_brown_div').css({
+		"height":"1200px"
+	});
+	}
+}
 jQuery(function() {
      jQuery("#ajaxbtn").click(function(){
+
 	jQuery('.lower_brown_div').css({
 		"height":"1200px"
 	});
@@ -41,6 +52,7 @@ jQuery(function() {
 			action : "get_post_past"
 		},
 		success : function( response ) {
+			expanded = true
 			var mydata = JSON.parse(response);
 			console.log(mydata);
 			for(var i = 0; i < mydata.length; i++){
@@ -52,14 +64,17 @@ jQuery(function() {
 					<div id=\"divforsmallimg\">\
 					<img class=\"smallImage\" src=\"http://localhost:8888/wp-content/themes/Archive"+mydata[i]['URLDIR']+"\">\
 					</div>\
-					<a href=\"\">\
+					<a >\
 					<h3>"+mydata[i]['post_title']+"</h3>\
 					<h2>"+mydata[i]['DATE_STARTING']+"</h2>\
 					<h2>"+mydata[i]['DATE_ENDING']+"</h2>\
 					</a>\
+					<p></p>\
 					</div>"
 					);
 			}
+
+			call_later()
 			//console.log(mydata);
 		}
 	});
@@ -72,31 +87,30 @@ jQuery(function() {
 
 });
 jQuery(window).bind('popstate', function(event) {
+	if(zoomed === 0){
+		return 0;
+	}
+	reset_css()//css('height', '960px')
+	jQuery(event.currentTarget.lastData).removeAttr("Style")
+	jQuery(event.currentTarget.lastData).removeAttr("Style")
+	jQuery(".smallEventBox #divforsmallimg").removeAttr("Style")
+	jQuery(".smallEventBox").removeAttr("Style")
+
+	jQuery('.bigEventBox').show();
+    jQuery('#centerid').show();
+    jQuery('.smallEventBox').show();
+    jQuery('#ajaxbtn').show();
+    jQuery('#upcoming_events').show();
+    jQuery('#centerid b').show();
 
     if(event.currentTarget.zoomed == 1){
-    	jQuery(event.currentTarget.lastData).css({
-    		'width': '29%',
-    		'height': '350px'
-    	});
     	jQuery(event.currentTarget.lastData).find('p').text(lastcached)
-    	jQuery('.bigEventBox').show();
-    	jQuery('#centerid').show();
-    	zoomed = false;
     }
     else if(event.currentTarget.zoomed == 2){
-    	jQuery(event.currentTarget.lastData).css({
-    		'width': '20%',
-    		'height': '180px'
-    	});
-    	//jQuery(event.currentTarget.lastData).find('p').text(lastcached)
-    	jQuery('.smallEventBox').show();
-    	jQuery('#ajaxbtn').show();
-    	jQuery('#upcoming_events').show();
-    	zoomed = false;
     	//unset text
     	jQuery(event.currentTarget.lastData).find('p').text("")
-
     }
+    zoomed = 0;
 });
 
 jQuery(function() {
@@ -119,9 +133,11 @@ jQuery(function() {
 				'width':'100%',
 				'height':'100%'
 			});
+
+			jQuery('.lower_brown_div').css('height', '550px')
 			zoomed = 1;
 			lastData = data;
-			 history.pushState('', '', '/zoom');
+			 history.pushState('', '', 'zoom');
 			}
 
 		    lastcached = jQuery(data).find('p').text();
@@ -144,31 +160,88 @@ jQuery(function() {
 
 });
 
+
+
 jQuery(function() {
      jQuery(".smallEventBox").click(function(event){
-     	console.log(allposts)
-			console.log(event.target.parentNode);
 			var data = event.target.parentNode;
 			var myClass = jQuery(data).attr("class");
 			if(myClass != "smallEventBox"){
+				console.log(data);
+				data = data.parentNode
+				console.log(data);
+
+			}
+			console.log("Data");
+			console.log(data);
+			var myClass = jQuery(data).attr("class");
+			if(typeof myClass != 'undefined' && myClass === "smallEventBox" && !zoomed){
+				console.log(data);
+				jQuery('.smallEventBox').hide();
+				jQuery('#ajaxbtn').hide();
+				jQuery('#upcoming_events').hide();
+				jQuery(data).show();
+				jQuery(".smallEventBox").css({
+				'width':'400px',
+				'height':'400px'
+				});
+				jQuery(".smallEventBox #divforsmallimg").css({
+				'max-width' : '400px',
+				'max-height' : '500px',
+				'border' : 'none'
+				});
+				zoomed = 2;
+				lastData = data;
+				history.pushState('', '', 'zoom');
+
+				jQuery('.lower_brown_div').css('height', '500px')
+
+		    	lastcached = jQuery(data).find('p').text();
+			console.log(lastcached);
+		
+			for(var ii = 0; ii< allposts.length; ii++){
+				if(allposts[ii].post_title === jQuery(data).find('h3').text()){
+					console.log(allposts[ii].post_content);
+					jQuery(data).find('p').text(allposts[ii].post_content);
+				}
+			}
+		}
+	});
+}); 
+
+
+function call_later(){
+	jQuery(".givemargin").click(function(event){
+     	console.log(allposts)
+			var data = event.target.parentNode;
+			var myClass = jQuery(data).attr("class");
+			if(myClass != "smallEventBox givemargin"){
 				data = data.parentNode
 			}
 
 			var myClass = jQuery(data).attr("class");
-			if(myClass === "smallEventBox" && !zoomed){
+			console.log(myClass)
+			if(typeof myClass != 'undefined' && myClass === "smallEventBox givemargin" && !zoomed){
 				console.log(data);
 			jQuery('.smallEventBox').hide();
+			jQuery('#centerid b').hide();
+			jQuery('.givemargin').hide();
 			jQuery('#ajaxbtn').hide();
 			jQuery('#upcoming_events').hide();
 			jQuery(data).show();
-			jQuery(data).css({
+			jQuery(".givemargin").css({
 				'width':'100%',
 				'height':'100%'
 			});
+			jQuery("#divforsmallimg").css({
+				'width':'400px',
+				'height':'400px'
+			});
 			zoomed = 2;
 			lastData = data;
-			 history.pushState('', '', '/zoom');
-			}
+			 history.pushState('', '', 'zoom');
+
+			jQuery('.lower_brown_div').css('height', '500px')
 
 		    lastcached = jQuery(data).find('p').text();
 			console.log(lastcached);
@@ -179,16 +252,11 @@ jQuery(function() {
 					jQuery(data).find('p').text(allposts[ii].post_content);
 				}
 			}
-
-
-
-
-
-
+		}
 	});
+}
 
 
-});
 
 
 

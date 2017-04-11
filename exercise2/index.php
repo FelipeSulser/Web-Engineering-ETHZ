@@ -437,7 +437,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 										<div id="divforsmallimg">
 										<img class="smallImage" src="<?php echo bloginfo('template_directory').$img_url[0]; ?>">
 										</div>
-										<a href="">
+										<a>
 										<h3><?php echo $postinfopast->post_title; ?></h3>
 										<h2><?php echo date('d/m/Y H:i:s', $meta_current['DATE_STARTING'][0]); ?></h2>
 										<h2><?php 
@@ -551,7 +551,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 						$meta = get_post_meta($idval);
 					
 						foreach($meta as $key=>$val){
-							if($key == '_edit_last' || $key == '_edit_lock' || $key == '_wp_old_slug')continue;
+							if($key == '_edit_last' || $key == '_edit_lock' || $key == '_wp_old_slug' || $key == 'OBJECT_TYPE')continue;
 							echo '<p> <b>'. $key.' : </b>'. $val[0].'</p> </br>';
 						}
 					endif;
@@ -575,7 +575,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 						$meta = get_post_meta($idval);
 					
 						foreach($meta as $key=>$val){
-							if($key == '_edit_last' || $key == '_edit_lock' || $key == '_wp_old_slug')continue;
+							if($key == '_edit_last' || $key == '_edit_lock' || $key == '_wp_old_slug'|| $key == 'OBJECT_TYPE')continue;
 							if($key == 'DISCARD'){
 								echo '<p>'.$val[0].'</p></br>';
 							}else{
