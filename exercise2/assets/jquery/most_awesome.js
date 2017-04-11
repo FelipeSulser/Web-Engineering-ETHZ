@@ -27,8 +27,8 @@ function changes(){
 	}
 
 
-	img_order = ["#firstimg", "#secondimg", "#thirdimg", "f#ourthimg", "#fifthimg", "#sixthimg"];
-	img_order_pop = ["#firstimgpop", "#secondimgpop", "#thirdimgpop", "f#ourthimgpop", "#fifthimgpop", "#sixthimgpop"];
+	img_order = ["#firstimg", "#secondimg", "#thirdimg", "#fourthimg", "#fifthimg", "#sixthimg"];
+	img_order_pop = ["#firstimgpop", "#secondimgpop", "#thirdimgpop", "#fourthimgpop", "#fifthimgpop", "#sixthimgpop"];
 	dishtypes = ["appetizer", "pasta", "meat", "dessert"]
 	text_order = ["#firstbox", "#secondbox", "#thirdbox", "#fourthbox", "#fifthbox", "#sixthbox"]
 	text_order_pop = ["#openModal1", "#openModal2", "#openModal3", "#openModal4", "#openModal5", "#openModal6"]
@@ -49,7 +49,6 @@ function changes(){
 	for(var ii = 0; ii < img_order.length; ii++){
 			jQuery(img_order[ii]).attr("src",path+ page_context[dishtypes[statepics]]["url"][ii]);
         	jQuery(img_order_pop[ii]).attr("src",path+ page_context[dishtypes[statepics]]["url"][ii]);
-
         	replace_text(page_context[dishtypes[statepics]]["h"][ii],page_context[dishtypes[statepics]]["c"][ii],jQuery(text_order[ii]), jQuery(text_order_pop[ii]));
 		}
 
