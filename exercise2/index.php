@@ -378,7 +378,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 										echo  date('d/m/Y H:i:s', $meta_current['DATE_ENDING'][0]); ?></h2>
 									</a>
 									
-									<?php the_content() ?> 
+									<?php the_excerpt(); ?> 
 									<?php echo "</div>";?>
 									<?php endif;?>
 								
@@ -445,6 +445,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 										if($datatime != NULL)
 										echo  date('d/m/Y H:i:s', $meta_current['DATE_ENDING'][0]); ?></h2>
 									</a>
+									<p></p>
 									
 									<?php echo "</div>";?>
 								<?php endif;?>

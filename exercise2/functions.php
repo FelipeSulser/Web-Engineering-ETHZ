@@ -121,7 +121,10 @@ function ajax_test_enqueue_scripts() {
 }
 add_action( 'wp_ajax_get_post_past', 'get_post_past' );
 add_action( 'wp_ajax_nopriv_get_post_past', 'get_post_past' );
-
+function wpdocs_custom_excerpt_length( $length ) {
+    return 15;
+}
+add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
 function get_post_past() {
   //quer
   $my_posts_past = get_posts(array(
@@ -151,7 +154,7 @@ function get_post_past() {
     $current_tstamp = time();
     $meta_current = get_post_meta($idval);
     $date_post = $meta_current['DATE_STARTING'][0];
-    
+
 
     if($date_post <  $current_tstamp):
       $img_url = $meta_current['URLDIR'];

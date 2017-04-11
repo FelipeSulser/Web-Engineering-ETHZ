@@ -17,6 +17,9 @@ var execute = 1
 
 var path = ""
 var page_context = {}
+var zoomed = 0;
+var lastData = null;
+var lastcached = "";
 //var path = "http://localhost:8888/wp-content/themes/Archive"
 
 jQuery(function() {
@@ -68,11 +71,37 @@ jQuery(function() {
 
 
 });
-window.addEventListener('popstate',function(event){
-	console.log(event.originalEvent);
+jQuery(window).bind('popstate', function(event) {
+
+    if(event.currentTarget.zoomed == 1){
+    	jQuery(event.currentTarget.lastData).css({
+    		'width': '29%',
+    		'height': '350px'
+    	});
+    	jQuery(event.currentTarget.lastData).find('p').text(lastcached)
+    	jQuery('.bigEventBox').show();
+    	jQuery('#centerid').show();
+    	zoomed = false;
+    }
+    else if(event.currentTarget.zoomed == 2){
+    	jQuery(event.currentTarget.lastData).css({
+    		'width': '20%',
+    		'height': '180px'
+    	});
+    	//jQuery(event.currentTarget.lastData).find('p').text(lastcached)
+    	jQuery('.smallEventBox').show();
+    	jQuery('#ajaxbtn').show();
+    	jQuery('#upcoming_events').show();
+    	zoomed = false;
+    	//unset text
+    	jQuery(event.currentTarget.lastData).find('p').text("")
+
+    }
 });
+
 jQuery(function() {
      jQuery(".bigEventBox").click(function(event){
+     	console.log(allposts)
 			console.log(event.target.parentNode);
 			var data = event.target.parentNode;
 			var myClass = jQuery(data).attr("class");
@@ -81,7 +110,7 @@ jQuery(function() {
 			}
 
 			var myClass = jQuery(data).attr("class");
-			if(myClass === "bigEventBox"){
+			if(myClass === "bigEventBox" && !zoomed){
 				console.log(data);
 			jQuery('.bigEventBox').hide();
 			jQuery('#centerid').hide();
@@ -90,12 +119,20 @@ jQuery(function() {
 				'width':'100%',
 				'height':'100%'
 			});
-			data = null
-			 window.history.pushState(data, '', '/zoom');
+			zoomed = 1;
+			lastData = data;
+			 history.pushState('', '', '/zoom');
 			}
 
+		    lastcached = jQuery(data).find('p').text();
+			console.log(lastcached);
 		
-
+			for(var ii = 0; ii< allposts.length; ii++){
+				if(allposts[ii].post_title === jQuery(data).find('h3').text()){
+					console.log(allposts[ii].post_content);
+					jQuery(data).find('p').text(allposts[ii].post_content);
+				}
+			}
 
 
 
@@ -106,6 +143,53 @@ jQuery(function() {
 
 
 });
+
+jQuery(function() {
+     jQuery(".smallEventBox").click(function(event){
+     	console.log(allposts)
+			console.log(event.target.parentNode);
+			var data = event.target.parentNode;
+			var myClass = jQuery(data).attr("class");
+			if(myClass != "smallEventBox"){
+				data = data.parentNode
+			}
+
+			var myClass = jQuery(data).attr("class");
+			if(myClass === "smallEventBox" && !zoomed){
+				console.log(data);
+			jQuery('.smallEventBox').hide();
+			jQuery('#ajaxbtn').hide();
+			jQuery('#upcoming_events').hide();
+			jQuery(data).show();
+			jQuery(data).css({
+				'width':'100%',
+				'height':'100%'
+			});
+			zoomed = 2;
+			lastData = data;
+			 history.pushState('', '', '/zoom');
+			}
+
+		    lastcached = jQuery(data).find('p').text();
+			console.log(lastcached);
+		
+			for(var ii = 0; ii< allposts.length; ii++){
+				if(allposts[ii].post_title === jQuery(data).find('h3').text()){
+					console.log(allposts[ii].post_content);
+					jQuery(data).find('p').text(allposts[ii].post_content);
+				}
+			}
+
+
+
+
+
+
+	});
+
+
+});
+
 
 
 
@@ -444,6 +528,7 @@ jQuery(document).ready(function(){
 		execute = 1
   		
 	});
+	 history.pushState({page:"Init"}, '', '');
 
 
 });
