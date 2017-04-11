@@ -15,10 +15,8 @@
 		
 	</head>
 	<script type="text/javascript">
-	var templateUrl = '<?= get_bloginfo("template_url"); ?>';
-
+var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 </script>
-
 <!-- fetch all the posts -->
 <?php
 	$args = array(
@@ -40,6 +38,10 @@
     var metas = <?php echo json_encode($metas); ?>;
 </script>
 
+
+<script type="text/javascript">
+    var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+</script>
 	<body id="container">
 
 		<!-- Header -->
@@ -149,8 +151,6 @@
 									<div class="img-container">
 
 										<a id="firstbox" class="img-a" href="#openModal1">
-
-
 											<img id="firstimg" class="my-img" src="<?php bloginfo('template_directory'); ?>/images/pic02.jpg">
 											<div class="opback">
 											<div class="img-tag" id="work">Green Rolls</div>
@@ -319,115 +319,148 @@
 					
 						<div id = "upcoming_events">
 							<h3 id="upcoming"><b> Upcoming Events </b></h3>
-							<div class="bigEventBox">
-								
-									
-										<span ><span  ></span></span>
+							
 
-									<img class="bigImage" src="<?php bloginfo('template_directory'); ?>/images/cooking.jpg">
-									
-										<a class="header-sum" href="">
-											<h3>Learning to Cook</h3>
-											<h2>12/03/2017 10:30 a.m.</h2>
-										</a>
-									
-									<p>Get the basic skills every home cook needs to be successful and happy in the kitchen. Ditch recipes by learning basic cooking formulas. Come and learn how to <a href=""> [Read More]</a></p>
+								<?php
 
-							</div>
-							<div class="bigEventBox">
-								
-									<span ><span  ></span></span>
+								function cmp2($a, $b)
+								{
+								   return $a->DATE_STARTING > $b->DATE_STARTING;
+								}	
+								$my_posts_future = get_posts(array(
+								'numberposts'	=> -1,
+								'post_type'		=> 'post',
+								'meta_key' => 'DATE_STARTING',
+								'orderby'	=> 'meta_value',
+								'order'		=> 'ASC'
+							));
+								if($my_posts_future):
+									$countermax = 3;
+									foreach($my_posts_future as &$postinfopast){
+										$idval = $postinfopast->ID;
+										$meta_current = get_post_meta($idval);
+										$date_post = $meta_current['DATE_STARTING'][0];
+										$postinfopast->DATE_STARTING =(int) $date_post;
+									}
+									usort($my_posts_future,"cmp2")
+									
+								?>
 
-								<img class="bigImage" src="<?php bloginfo('template_directory'); ?>/images/2.jpg">
-									<a class="header-sum" href="">
-										<h3>Pasta Day</h3>
-										<h2>11/03/2017 18:00 - 23:00</h2>
+								<?php foreach($my_posts_future as $postinfo):
+									$idval = $postinfo->ID;
+									
+									$current_tstamp = time();
+									$meta_current = get_post_meta($idval);
+									$date_post = $meta_current['DATE_STARTING'][0];
+									if($date_post >  $current_tstamp and $countermax > 0):
+										$countermax = $countermax -1;
+										
+										$img_url = $meta_current['URLDIR'];
+										
+										setup_postdata($postinfo) ;
+										
+										?>
+
+										<?php echo "<div class=\"bigEventBox\">" ?>
+
+										<?php echo "<span ><span  ></span></span>"; ?>
+										
+									
+
+										<img class="bigImage" src="<?php echo bloginfo('template_directory').$img_url[0]; ?>">
+										<a class="header-sum">
+										<h3><?php echo $postinfo->post_title; ?></h3>
+										<h2><?php echo date('d/m/Y H:i:s', $meta_current['DATE_STARTING'][0]); ?></h2>
+
+										<h2><?php 
+										$datatime = $meta_current['DATE_ENDING'][0];
+										if($datatime != NULL)
+										echo  date('d/m/Y H:i:s', $meta_current['DATE_ENDING'][0]); ?></h2>
 									</a>
 									
-									<p>The fresh pastas offered at LaPlace are made right in our restaurant. And if you've only ever had boxed pastas, you are truly missing out! Once evert two months we celebrate Pasta with an event <a  href=""> [Read More]</a></p>
-
-							</div>
-							<div class="bigEventBox">
+									<?php the_content() ?> 
+									<?php echo "</div>";?>
+									<?php endif;?>
 								
-									<span ><span  ></span></span>
+								<?php endforeach;?>
 
-								<img class="bigImage" src="<?php bloginfo('template_directory'); ?>/images/3.png">
-									<a class="header-sum" href="">
-										<h3>Happy Hour</h3>
-										<h2>03/03/2017 18:00 - 23:00</h2>
-									</a>
-									
-									<p>It's Friday!!! Come and enjoy the start of the weekend with us. Our Happy Hours offer the best combination of nice drinks and food. To reserve a sit please register to the event <a href=""> [Read More]</a> </p>
+
+
+							<?php endif; ?>
 								
-							</div>
 						</div>
 						</br> </br>
 						<div  id="centerid">
 						<h3 > <b> Past Events </b> </h3>
-						<div >
-							<div  class="smallEventBox">
-									
-										<span ><span  ></span></span>
-								<div id="divforsmallimg">
-									<img class="smallImage"  src="<?php bloginfo('template_directory'); ?>/images/4.jpg">
-								</div>
+						<div id="eventpast">
 
-										<a href="">
-											<h3>10th Anniversary</h3>
-											<h2>01/12/2016 18:00 - 23:00</h2>
-										</a>
+							<?php
 
-										
-									
-								</div>
-							<div  class="smallEventBox">
-									
-										<span ><span  ></span></span>
-								<div id="divforsmallimg">
-									<img class="smallImage" src="<?php bloginfo('template_directory'); ?>/images/2.jpg">
-								</div>
-										<a href="">
-											<h3>Pasta Day</h3>
-											<h2>20/11/2016 18:00 - 23:00</h2>
-										</a>
-										
-										
-									
-								</div>
-							
-							<div  class="smallEventBox">
-									
-										<span ><span  ></span></span>
-								<div id="divforsmallimg">
-									<img class="smallImage" src="<?php bloginfo('template_directory'); ?>/images/3.png">
-								</div>
+								function cmp($a, $b)
+								{
+								   return $a->DATE_STARTING < $b->DATE_STARTING;
+								}	
+								$my_posts_past = get_posts(array(
+								'numberposts'	=> -1,
+								'post_type'		=> 'post',
+								'meta_key'		=> 'OBJECT_TYPE',
+								'meta_value'	=> 'event'
+							));
+								if($my_posts_past):
+									foreach($my_posts_past as &$postinfopast){
+										$idval = $postinfopast->ID;
+										$meta_current = get_post_meta($idval);
+										$date_post = $meta_current['DATE_STARTING'][0];
+										$postinfopast->DATE_STARTING =(int) $date_post;
+									}
+									usort($my_posts_past,"cmp")
+								?>
+								<?php foreach($my_posts_past as $postinfopast):
+									$idval = $postinfopast->ID;
+									$current_tstamp = time();
+									$mylimit = 0;
+									$meta_current = get_post_meta($idval);
+									$date_post = $meta_current['DATE_STARTING'][0];
 
-										<a href="">
-											<h3>Happy Hour</h3>
-											<h2>11/11/2016 18:00 - 23:00</h2>
-										</a>
+									if($date_post <  $current_tstamp ):
+										if($limit < 4):
+										$img_url = $meta_current['URLDIR'];
 										
+										setup_postdata($postinfopast) ;
 										
-									
-								</div>
+										?>
+										<?php echo "<div class=\"smallEventBox\">" ?>
 
-							<div  class="smallEventBox">
+										<?php echo "<span ><span  ></span></span>"; ?>
+										
 									
-										<span ><span  ></span></span>
-								<div id="divforsmallimg">
-									<img class="smallImage" src="<?php bloginfo('template_directory'); ?>/images/cooking.jpg">
-								</div>
+										<div id="divforsmallimg">
+										<img class="smallImage" src="<?php echo bloginfo('template_directory').$img_url[0]; ?>">
+										</div>
 										<a href="">
-											<h3>Salsa</h3>
-											<h2>01/11/2016 18:00 - 23:00</h2>
-										</a>
-										
-										
+										<h3><?php echo $postinfopast->post_title; ?></h3>
+										<h2><?php echo date('d/m/Y H:i:s', $meta_current['DATE_STARTING'][0]); ?></h2>
+										<h2><?php 
+										$datatime = $meta_current['DATE_ENDING'][0];
+										if($datatime != NULL)
+										echo  date('d/m/Y H:i:s', $meta_current['DATE_ENDING'][0]); ?></h2>
+									</a>
 									
-								</div>			
+									<?php echo "</div>";?>
+								<?php endif;?>
+									<?php 
+									$limit = $limit +1;
+									endif;?>
+								
+								<?php endforeach;?>
+
+
+
+							<?php endif; ?>
+									
 						</div>
 						</br> </br>
-						<div class="SeeMoreBtn">
+						<div id="ajaxbtn" class="SeeMoreBtn">
 							<div >
 								
 									<a href="#second" style="text-decoration: none; color: white;">See More</a>

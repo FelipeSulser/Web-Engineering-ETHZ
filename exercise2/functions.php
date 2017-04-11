@@ -111,6 +111,73 @@ function add_custom_image_header_ours( $wp_head_callback, $admin_head_callback, 
     return add_theme_support( 'custom-header', $args );
 }
 add_custom_image_header_ours('custom_header',$args);
+function ajax_test_enqueue_scripts() {
+ wp_enqueue_script( 'most_awesome', get_template_directory_uri() . '/assets/jquery/most_awesome.js', array ( 'jquery' ), 1.1, true);
 
+  wp_localize_script( 'most_awesome', 'postevents', array(
+    'ajax_url' => admin_url( 'admin-ajax.php' )
+  ));
+
+}
+add_action( 'wp_ajax_get_post_past', 'get_post_past' );
+add_action( 'wp_ajax_nopriv_get_post_past', 'get_post_past' );
+
+function get_post_past() {
+  //quer
+  $my_posts_past = get_posts(array(
+                'numberposts' => -1,
+                'post_type'   => 'post',
+                'meta_key' => 'DATE_STARTING',
+                'orderby' => 'meta_value',
+                'order'   => 'DESC'
+              ));
+  $my_posts = array();
+  $my_special_array = array();
+  if($my_posts_past):
+    foreach($my_posts_past as &$postinfopast){
+        $idval = $postinfopast->ID;
+        $meta_current = get_post_meta($idval);
+        $date_post = $meta_current['DATE_STARTING'][0];
+        $postinfopast->DATE_STARTING =(int) $date_post;
+        array_push($my_special_array, (int) $date_post);
+    }
+
+    usort($my_posts_past, function($a, $b) { return($a->DATE_STARTING < $b->DATE_STARTING); });
+    
+     $threshold = 4;
+     $counter = 4;
+   foreach($my_posts_past as &$postinfopast):
+    $idval = $postinfopast->ID;
+    $current_tstamp = time();
+    $meta_current = get_post_meta($idval);
+    $date_post = $meta_current['DATE_STARTING'][0];
+    
+
+    if($date_post <  $current_tstamp):
+      $img_url = $meta_current['URLDIR'];
+      
+      setup_postdata($postinfopast) ;
+      if($threshold <= 0 && $counter > 0){
+
+       // $postinfopast->DATE_STARTING = $meta_current['DATE_STARTING'][0];
+        $postinfopast->DATE_STARTING = date('d/m/Y H:i:s', $meta_current['DATE_STARTING'][0]);
+    $postinfopast->DATE_ENDING = date('d/m/Y H:i:s', $meta_current['DATE_ENDING'][0]);
+        $postinfopast->URLDIR = $meta_current['URLDIR'][0];
+        //array_push($postinfopast, $meta_current['DATE_STARTING']);
+        array_push($my_posts, ($postinfopast));
+        $counter = $counter -1;
+
+      }
+      $threshold = $threshold-1;
+                   
+                 endif;
+                
+                 endforeach;
+
+             endif; 
+             echo json_encode($my_posts);
+             die();
+
+}
 
 ?>

@@ -19,6 +19,95 @@ var path = ""
 var page_context = {}
 //var path = "http://localhost:8888/wp-content/themes/Archive"
 
+jQuery(function() {
+     jQuery("#ajaxbtn").click(function(){
+	jQuery('.lower_brown_div').css({
+		"height":"1200px"
+	});
+	jQuery('#ajaxbtn').css({
+		"margin-top":"420px"
+	});
+
+
+
+	//query wp database 
+	jQuery.ajax({
+		url : ajaxurl,
+		type : 'post',
+		data : {
+			action : "get_post_past"
+		},
+		success : function( response ) {
+			var mydata = JSON.parse(response);
+			console.log(mydata);
+			for(var i = 0; i < mydata.length; i++){
+				//console.log(mydata[i]['DATE_STARTING']);
+				//console.log("<img class=\"smallImage\" src=\"http://localhost:8888/wp-content/themes/Archive\""+mydata[i]['URLDIR']+"\">");
+				jQuery('#centerid #eventpast').append(
+					"<div class=\"smallEventBox givemargin\">\
+					<span><span></span></span>\
+					<div id=\"divforsmallimg\">\
+					<img class=\"smallImage\" src=\"http://localhost:8888/wp-content/themes/Archive"+mydata[i]['URLDIR']+"\">\
+					</div>\
+					<a href=\"\">\
+					<h3>"+mydata[i]['post_title']+"</h3>\
+					<h2>"+mydata[i]['DATE_STARTING']+"</h2>\
+					<h2>"+mydata[i]['DATE_ENDING']+"</h2>\
+					</a>\
+					</div>"
+					);
+			}
+			//console.log(mydata);
+		}
+	});
+
+
+
+
+	});
+
+
+});
+window.addEventListener('popstate',function(event){
+	console.log(event.originalEvent);
+});
+jQuery(function() {
+     jQuery(".bigEventBox").click(function(event){
+			console.log(event.target.parentNode);
+			var data = event.target.parentNode;
+			var myClass = jQuery(data).attr("class");
+			if(myClass != "bigEventBox"){
+				data = data.parentNode
+			}
+
+			var myClass = jQuery(data).attr("class");
+			if(myClass === "bigEventBox"){
+				console.log(data);
+			jQuery('.bigEventBox').hide();
+			jQuery('#centerid').hide();
+			jQuery(data).show();
+			jQuery(data).css({
+				'width':'100%',
+				'height':'100%'
+			});
+			data = null
+			 window.history.pushState(data, '', '/zoom');
+			}
+
+		
+
+
+
+
+
+
+
+	});
+
+
+});
+
+
 
 function changes(){
 
@@ -86,7 +175,41 @@ function changes(){
 
 }
 
+
+function get_page_context(){
+	console.log(".")
+	// allposts are all posts with their data
+	// metas have the corresponding key value pairs
+
+	//Output: For the different meal classes the different image urls -> array in dictionary for the different dishtypes
+	dishtypes = ["appetizer", "pasta", "meat", "dessert"]
+	var dictionary = {};
+	for(var ii = 0; ii < dishtypes.length; ii++){
+		var dic = {};
+		dic["h"] = new Array();
+		dic["c"] = new Array();
+		dic["url"] = new Array();
+		dictionary[dishtypes[ii]] = dic;
+	}
+
+
+	for(var ii = 0; ii < metas.length; ii++){
+       kvs = metas[ii]
+       var newh = allposts[ii].post_title
+       var newc = allposts[ii].post_content
+       if(kvs.DISHTYPE){
+       	dictionary[kvs.DISHTYPE[0]].h.push(newh)
+       	dictionary[kvs.DISHTYPE[0]].c.push(newc)
+       	dictionary[kvs.DISHTYPE[0]].url.push(kvs.URLDIR[0])
+       }
+    }
+
+    page_context = dictionary
+
+    return dictionary
+}
 function fade_in(){
+
 	if(jQuery('#la_place').isOnScreen() && !la_place){
 		la_place = true
 		console.log("la place")
@@ -262,71 +385,12 @@ function replace_text(header, body, firstbox, modalbox){
 	modalbox.find("footer").text(body)
 
 }
-/*
-function get_img_urls(){
-	console.log(".")
-	// allposts are all posts with their data
-	// metas have the corresponding key value pairs
-	console.log(allposts)
-
-	//Output: For the different meal classes the different image urls -> array in dictionary for the different dishtypes
-	dishtypes = ["appetizer", "pasta", "meat", "dessert"]
-	var url_dic = {};
-	for(var ii = 0; ii < dishtypes.length; ii++){
-		url_dic[dishtypes[ii]] = new Array();
-
-	}
-
-
-	for(var ii = 0; ii < metas.length; ii++){
-       kvs = metas[ii]
-       if(kvs.DISHTYPE){
-       	console.log(kvs.URLDIR)
-       	url_dic[kvs.DISHTYPE[0]].push(kvs.URLDIR[0])
-       }
-    }
-
-    return url_dic
-}
-*/
-
-function get_page_context(){
-	console.log(".")
-	// allposts are all posts with their data
-	// metas have the corresponding key value pairs
-
-	//Output: For the different meal classes the different image urls -> array in dictionary for the different dishtypes
-	dishtypes = ["appetizer", "pasta", "meat", "dessert"]
-	var dictionary = {};
-	for(var ii = 0; ii < dishtypes.length; ii++){
-		var dic = {};
-		dic["h"] = new Array();
-		dic["c"] = new Array();
-		dic["url"] = new Array();
-		dictionary[dishtypes[ii]] = dic;
-	}
-
-
-	for(var ii = 0; ii < metas.length; ii++){
-       kvs = metas[ii]
-       var newh = allposts[ii].post_title
-       var newc = allposts[ii].post_content
-       if(kvs.DISHTYPE){
-       	dictionary[kvs.DISHTYPE[0]].h.push(newh)
-       	dictionary[kvs.DISHTYPE[0]].c.push(newc)
-       	dictionary[kvs.DISHTYPE[0]].url.push(kvs.URLDIR[0])
-       }
-    }
-
-    page_context = dictionary
-
-    return dictionary
-}
-
 
 function log(txt) {
   jQuery("#aboutid").html(" <b>" + txt + "</b> px")
 }
+
+
 /*
 Every time we scrool we check whether a window is visible	
 */
@@ -370,7 +434,7 @@ jQuery(document).ready(function(){
 	path = templateUrl
 	var page_context = get_page_context()
 	fade_in()
-	setInterval(changes(), 4000);
+	setInterval(changes, 4000);
 	jQuery( ".img-container" ).click(function() {
 		execute = 0
 		console.log("clicked")

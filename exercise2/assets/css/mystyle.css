@@ -24,9 +24,12 @@ a {
 .lower_brown_div{
 	#background: #423433;
 	color: white;
-	height: 820px;
+	height: 890px;
 	text-align: center;
 	overflow: hidden;
+}
+.givemargin{
+	margin-top: 120px;
 }
 
 #right{
@@ -386,7 +389,7 @@ a {
 	height: 30px;
 	display: inline-block;
 	
-	margin-top: 30px;
+	margin-top: 110px;
 	border-radius: 3px;
 	text-decoration: none;
 
