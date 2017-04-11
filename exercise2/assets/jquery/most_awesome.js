@@ -194,7 +194,7 @@ jQuery(function() {
 				lastData = data;
 				history.pushState('', '', 'zoom');
 
-				jQuery('.lower_brown_div').css('height', '500px')
+				jQuery('.lower_brown_div').css('height', '600px')
 
 		    	lastcached = jQuery(data).find('p').text();
 			console.log(lastcached);
@@ -205,6 +205,7 @@ jQuery(function() {
 					jQuery(data).find('p').text(allposts[ii].post_content);
 				}
 			}
+			window.scrollBy(0,-300);
 		}
 	});
 }); 
@@ -224,24 +225,25 @@ function call_later(){
 			if(typeof myClass != 'undefined' && myClass === "smallEventBox givemargin" && !zoomed){
 				console.log(data);
 			jQuery('.smallEventBox').hide();
-			jQuery('#centerid b').hide();
 			jQuery('.givemargin').hide();
 			jQuery('#ajaxbtn').hide();
 			jQuery('#upcoming_events').hide();
 			jQuery(data).show();
-			jQuery(".givemargin").css({
-				'width':'100%',
-				'height':'100%'
+			jQuery('.givemargin').css({
+				'width' : '233px',
+				'height' : '221px',
+				'margin-top':'0px'
 			});
-			jQuery("#divforsmallimg").css({
-				'width':'400px',
-				'height':'400px'
+			jQuery('.smallEventBox #divforsmallimg').css({
+				'max-width' : '233px',
+				'max-height' : '221px',
+				'border' : 'none'
 			});
 			zoomed = 2;
 			lastData = data;
 			 history.pushState('', '', 'zoom');
 
-			jQuery('.lower_brown_div').css('height', '500px')
+			jQuery('.lower_brown_div').css('height', '600px')
 
 		    lastcached = jQuery(data).find('p').text();
 			console.log(lastcached);
@@ -252,6 +254,10 @@ function call_later(){
 					jQuery(data).find('p').text(allposts[ii].post_content);
 				}
 			}
+
+            window.scrollBy(0,-600);
+          
+
 		}
 	});
 }
