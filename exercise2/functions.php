@@ -10,13 +10,11 @@
             'transport'  => 'postMessage' //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
          ) 
       );   
-
       
-
       //1. Define a new section (if desired) to the Theme Customizer
       $wp_customize->add_section( 'mytheme_options', 
          array(
-            'title'       => __( 'MyTheme Options', 'mytheme' ), //Visible title of section
+            'title'       => __( 'LaPlace Color', 'mytheme' ), //Visible title of section
             'priority'    => 35, //Determines what order this appears in
             'capability'  => 'edit_theme_options', //Capability needed to tweak
             'description' => __('Allows you to customize some example settings for MyTheme.', 'mytheme'), //Descriptive tooltip
@@ -24,7 +22,7 @@
       );
        //2. Register new settings to the WP database...
           
-            
+      $wp_customize->remove_section('colors');
      
       $wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
          $wp_customize, //Pass the $wp_customize object (required)
@@ -33,11 +31,93 @@
             'label'      => __( 'Bg Color' ), //Admin-visible name of the control
             'settings'   => 'background_color_settings', //Which setting to load and manipulate (serialized is okay)
             'priority'   => 10, //Determines the order this control appears in for the specified section
-            'section'    => 'colors', //ID of the section this control should render in (can be one of yours, or a section)
+            'section'    => 'mytheme_options', //ID of the section this control should render in (can be one of yours, or a section)
             'transport' => 'postMessage'
          ) 
       ) );
+
+
+
+
+
+
+
+
+
+
+
+      $wp_customize->add_section( 'Opening_Hours', 
+         array(
+            'title'       => "Opening_Hours", //Visible title of section
+            'priority'    => 40, //Determines what order this appears in
+            'capability'  => 'edit_theme_options', //Capability needed to tweak
+            'description' => __('Allows you to customize some example settings for MyTheme.', 'mytheme'), //Descriptive tooltip
+         ) 
+      );
+
+
+      $wp_customize->add_setting(
+    'monday_opening_setting',
+    array(
+        'default' => 'Closed',
+    )
+);
+      $wp_customize->add_control(
+    'monday_opening_setting',
+    array(
+        'label' => 'Monday',
+        'section' => 'Opening_Hours',
+        'type' => 'text',
+    )
+);
+
+      $wp_customize->add_setting(
+    'tue_fri_opening_setting',
+    array(
+        'default' => 'Closed',
+    )
+);
+      $wp_customize->add_control(
+    'tue_fri_opening_setting',
+    array(
+        'label' => 'Tue-Fri',
+        'section' => 'Opening_Hours',
+        'type' => 'text',
+    )
+);
+       $wp_customize->add_setting(
+    'sat_sun_opening_setting',
+    array(
+        'default' => 'Closed',
+    )
+);
+      $wp_customize->add_control(
+    'sat_sun_opening_setting',
+    array(
+        'label' => 'Sat-Sun',
+        'section' => 'Opening_Hours',
+        'type' => 'text',
+    )
+);
+        $wp_customize->add_setting(
+    'holiday_opening_setting',
+    array(
+        'default' => 'Closed',
+    )
+);
+      $wp_customize->add_control(
+    'holiday_opening_setting',
+    array(
+        'label' => 'Holidays',
+        'section' => 'Opening_Hours',
+        'type' => 'text',
+    )
+);
+
+
    }
+
+
 
    function generate_css( $selector, $style, $mod_name, $prefix='', $postfix='', $echo=true ) {
       $return = '';
@@ -91,7 +171,6 @@ add_action( 'wp_footer' ,  'header_output'  );
 $args = array(
   'width' => 1600,
   'height' => 650,
-  'default-image' => get_template_directory_uri(). '/images/header.jpg',
   'uploads' => true,
   );
 
@@ -102,7 +181,6 @@ function add_custom_image_header_ours( $wp_head_callback, $admin_head_callback, 
         'admin-head-callback' => $admin_head_callback,
         'width' => 1600,
         'height' => 650,
-        'default-image' => get_template_directory_uri(). '/images/header.jpg',
         'uploads' => true
 
     );

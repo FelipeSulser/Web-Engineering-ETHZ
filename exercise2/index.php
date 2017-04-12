@@ -536,62 +536,24 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 			<div id="Impressium">
 				<div id="Opening_Hours" class="leftrightimp" >
 					<h2> Opening Hour </h2>
-					<?php
-					$the_slug = 'opening-hours';
-					$args = array(
-					  'name'        => $the_slug,
-					  'post_type'   => 'post',
-					  'post_status' => 'publish',
-					  'numberposts' => 1
-					);
-
-					$my_posts = get_posts($args);
-					if( $my_posts ) :
-						$idval = $my_posts[0]->ID;
-						$meta = get_post_meta($idval);
-					
-						foreach($meta as $key=>$val){
-							if($key == '_edit_last' || $key == '_edit_lock' || $key == '_wp_old_slug' || $key == 'OBJECT_TYPE')continue;
-							echo '<p> <b>'. $key.' : </b>'. $val[0].'</p> </br>';
-						}
-					endif;
-					?>
-				
+					<p> <b> MONDAY : </b><?php echo get_theme_mod( 'monday_opening_setting', 'Closed' ); ?> </p> </br>
+					<p> <b>TUE-FRI : </b><?php echo get_theme_mod( 'tue_fri_opening_setting', 'Closed' ); ?></p> </br>
+					<p> <b>SAT-SUN : </b><?php echo get_theme_mod( 'sat_sun_opening_setting', 'Closed' ); ?></p> </br>
+					<p> <b>HOLIDAYS : </b><?php echo get_theme_mod( 'holiday_opening_setting', 'Closed' ); ?></p> </br>
 				</div>
 				<div  id="Contacts" class="leftrightimp">
 					<h2>  Contacts </h2>
-					<?php
-					$the_slug = 'contacts';
-					$args = array(
-					  'name'        => $the_slug,
-					  'post_type'   => 'post',
-					  'post_status' => 'publish',
-					  'numberposts' => 1
-					);
-
-					$my_posts = get_posts($args);
-					if( $my_posts ) :
-						$idval = $my_posts[0]->ID;
-						$meta = get_post_meta($idval);
-					
-						foreach($meta as $key=>$val){
-							if($key == '_edit_last' || $key == '_edit_lock' || $key == '_wp_old_slug'|| $key == 'OBJECT_TYPE')continue;
-							if($key == 'DISCARD'){
-								echo '<p>'.$val[0].'</p></br>';
-							}else{
-								echo '<p> <b>'. $key.' : </b>'. $val[0].'</p> </br>';
-							}
-							
-						}
-					endif;
-					?>
-	
+					<p> <b>ADDRESS : </b>4578 Zurich</p> </br>
+					<p> Badenerstrasse 500</p> </br>
+					<p> <b>PHONE : </b>(606) 144-0100 </p> </br>
+					<p> <b>EMAIL : </b>admin@laplace.com</p> </br>
 				</div>	
 			</div>	
 				<div id="Footer">
 					<ul >
 					
-						<li id = "left_li">&copy; Untitled. All rights reserved.</li><li>Design: ETH Zurich, Globis Group</li>
+						<li id = "left_li">&copy;<?php echo get_bloginfo('description'); ?>
+			</li><li>Design: ETH Zurich, Globis Group</li>
 					</ul>
 				</div>
 			</div>
