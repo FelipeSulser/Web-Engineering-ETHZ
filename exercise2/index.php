@@ -147,8 +147,26 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 								</div>
 
 								<div id="right">
-
+									<?php 
+    query_posts(array( 
+        'post_type' => 'dishes_post',
+        'showposts' => 6,
+        'meta_key' => 'type',
+        'meta_value' => 'dessert'
+    ) );  
+?>
+<?php while (have_posts()) : the_post(); ?>
+        <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+        <p><?php echo get_the_excerpt(); ?></p>
+        <?php 
+        $objectdd = get_attached_media('image');
+        $id_media = key($objectdd);
+        $media_url = get_attached_media( 'image' )[$id_media]->guid;
+        ?>
+<?php endwhile;?>
 									<div class="img-container">
+
+
 
 										<a id="firstbox" class="img-a" href="#openModal1">
 											<img id="firstimg" class="my-img" src="<?php bloginfo('template_directory'); ?>/images/pic02.jpg">
@@ -158,6 +176,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 										</div>
 										</a>
 									</div>
+
 									<div id="openModal1" class="modalDialog">
 										<div class="modalwrapper">
 												<header>
@@ -182,6 +201,10 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 										</div>
 										</a>
 									</div>
+
+
+
+
 									<div id="openModal2" class="modalDialog">
 										<div class="modalwrapper">
 												<header>
@@ -319,7 +342,33 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 					
 						<div id = "upcoming_events">
 							<h3 id="upcoming"><b> Upcoming Events </b></h3>
-							
+							<?php 
+
+							$mydate = time();
+    query_posts(array( 
+        'post_type' => 'event_post',
+        'orderby' => 'meta_value', // We want to organize the events by date    
+        'meta_key' => 'key1', // Grab the "start date" field created via "More Fields" plugin (stored in YYYY-MM-DD format)
+        'order' => 'ASC', // ASC is the other option    
+        'posts_per_page' => '3', // Let's show them all.   
+        'meta_query' => array( // WordPress has all the results, now, return only the events after today's date
+            array(
+                'key' => 'key1', // Check the start date field
+                'value' => $mydate, // Set today's date (note the similar format)
+                'compare' => '>=' // Return the ones greater than today's date
+                )
+            ),
+    ) );  
+?>
+<?php while (have_posts()) : the_post(); ?>
+        <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+        <p><?php echo get_the_excerpt(); ?></p>
+        <?php 
+        $objectdd = get_attached_media('image');
+        $id_media = key($objectdd);
+        $media_url = get_attached_media( 'image' )[$id_media]->guid;
+        ?>
+<?php endwhile;?>
 
 								<?php
 
@@ -393,7 +442,33 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 						<div  id="centerid">
 						<h3 > <b> Past Events </b> </h3>
 						<div id="eventpast">
+<?php
 
+$mynewdate = time();
+    query_posts(array( 
+        'post_type' => 'event_post',
+        'orderby' => 'meta_value', // We want to organize the events by date    
+        'meta_key' => 'key1', // Grab the "start date" field created via "More Fields" plugin (stored in YYYY-MM-DD format)
+        'order' => 'DESC', // ASC is the other option    
+        'posts_per_page' => '8', // Let's show them all.   
+        'meta_query' => array( // WordPress has all the results, now, return only the events after today's date
+            array(
+                'key' => 'key1', // Check the start date field
+                'value' => $mynewdate, // Set today's date (note the similar format)
+                'compare' => '<=' // Return the ones greater than today's date
+                )
+            ),
+    ) );  
+?>
+<?php while (have_posts()) : the_post(); ?>
+        <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+        <p><?php echo get_the_excerpt(); ?></p>
+        <?php 
+        $objectdd = get_attached_media('image');
+        $id_media = key($objectdd);
+        $media_url = get_attached_media( 'image' )[$id_media]->guid;
+        ?>
+<?php endwhile;?>
 							<?php
 
 								function cmp($a, $b)
