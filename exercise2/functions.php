@@ -329,4 +329,181 @@ function get_post_past() {
 
 }
 
+function dishes_init() {
+    $args = array(
+      'label' => 'Dishes',
+        'public' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'rewrite' => array('slug' => 'dishes_post'),
+        'query_var' => true,
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'trackbacks',
+            'custom-fields',
+            'comments',
+            'revisions',
+            'thumbnail',
+            'author',
+            'page-attributes',)
+        );
+    register_post_type( 'dishes_post', $args );
+}
+add_action( 'init', 'dishes_init' );
+
+function event_init() {
+    $args = array(
+      'label' => 'Events',
+        'public' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'rewrite' => array('slug' => 'event_post'),
+        'query_var' => true,
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'trackbacks',
+            'custom-fields',
+            'comments',
+            'revisions',
+            'thumbnail',
+            'author',
+            'page-attributes',)
+        );
+    register_post_type( 'event_post', $args );
+}
+add_action( 'init', 'event_init' );
+
+add_action( 'add_meta_boxes', 'cd_meta_box_add' );
+add_action('add_meta_boxes','cd_meta_box_events_add');
+function cd_meta_box_add()
+{
+    add_meta_box( 'my-meta-box-id', 'My First Meta Box', 'cd_meta_box_cb', 'dishes_post', 'normal', 'high' );
+}
+function cd_meta_box_cb($object)
+{
+    // $post is already set, and contains an object: the WordPress post
+    global $post;
+    //$values = get_post_custom( $post->ID );
+    $values = get_post_meta($object->ID, "type", true);
+    if($values == "meat"){
+      echo "Currently Selected: meat and fish";
+   }
+    else{
+    echo "Currently Selected: ".$values;
+  }
+
+    
+ 
+     
+    // We'll use this nonce field later on when saving.
+    ?>
+     
+    <p>
+        <label for="my_meta_box_select">Type</label>
+        <select name="my_meta_box_select" id="my_meta_box_select">
+           <option value="appetizer" >Appetizer</option>
+           <option value="pasta">Pasta</option>
+           <option value="meat">Meat and Fish</option> 
+           <option value="dessert">Dessert</option>
+
+        </select>
+    </p>
+     
+  
+    <?php    
+}
+?>
+<?php
+
+
+
+//FOr events
+function cd_meta_box_events_add()
+{
+    add_meta_box( 'my-meta-box-idd', 'Custom Types', 'cd_meta_box_events', 'event_post', 'normal', 'high' );
+}
+
+
+//tf_events_meta
+function cd_meta_box_events ($object) {
+ 
+// - grab data -
+ 
+global $post;
+
+$meta_sd = get_post_meta($object->ID, "key1", true);
+$meta_ed = get_post_meta($object->ID, "key2", true);
+echo "";
+echo "";
+
+$meta_st = $meta_sd;
+$meta_et = $meta_ed;
+ 
+// - grab wp time format -
+ 
+$date_format = get_option('date_format'); // Not required in my code
+$time_format = get_option('time_format');
+ 
+// - populate today if empty, 00:00 for time -
+ 
+if ($meta_sd == null) { $meta_sd = time(); $meta_ed = $meta_sd; $meta_st = 0; $meta_et = 0;}
+ 
+// - convert to pretty formats -
+ 
+$clean_sd = date("D, M d, Y", $meta_sd);
+$clean_ed = date("D, M d, Y", $meta_ed);
+$clean_st = date($time_format, $meta_st);
+$clean_et = date($time_format, $meta_et);
+ 
+// - security -
+ 
+echo '<input type="hidden" name="tf-events-nonce" id="tf-events-nonce" value="' .
+wp_create_nonce( 'tf-events-nonce' ) . '" />';
+ 
+// - output -
+ 
+?>
+<div class="tf-meta">
+<ul>
+   <li><label>Start Date</label><input name="tf_events_startdate" class="tfdate" value="<?php echo $clean_sd; ?>" /></li>
+    <li><label>Start Time</label><input name="tf_events_starttime" value="<?php echo $clean_st; ?>" /><em>Use 24h format (7pm = 19:00)</em></li>
+    <li><label>End Date</label><input name="tf_events_enddate" class="tfdate" value="<?php echo $clean_ed; ?>" /></li>
+    <li><label>End Time</label><input name="tf_events_endtime" value="<?php echo $clean_et; ?>" /><em>Use 24h format (7pm = 19:00)</em></li>
+  
+</ul>
+</div>
+<?php
+}
+?>
+<?php
+add_action ('save_post', 'save_tf_events',10,3);
+ 
+function save_tf_events($post_id){
+// - still require nonce
+    
+   if(isset($_POST["my_meta_box_select"])):
+    update_post_meta($post_id, "type", $_POST["my_meta_box_select"] );
+    return $post_id;
+    endif;
+
+  if(!isset($_POST["tf_events_startdate"])):
+  return $post_id;
+  endif;
+  $updatestartd = strtotime ( $_POST["tf_events_startdate"] . $_POST["tf_events_starttime"] );
+  update_post_meta($post_id, "key1", $updatestartd );
+   
+  if(!isset($_POST["tf_events_enddate"])):
+  return $post_id;
+  endif;
+  $updateendd = strtotime ( $_POST["tf_events_enddate"] . $_POST["tf_events_endtime"]);
+  update_post_meta($post_id, "key2", $updateendd );
+   
+}
+
 ?>

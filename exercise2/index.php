@@ -470,6 +470,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 						</div>
 					</div>
 				</div>
+
 			
 		<!-- Basic Elements -->
 		
