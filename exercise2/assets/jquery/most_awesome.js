@@ -293,10 +293,21 @@ function changes(){
         	"background-color" : "transparent"
         	});
 
+
 	for(var ii = 0; ii < img_order.length; ii++){
+		jQuery(img_order[ii]).hide()
+
+		jQuery(text_order[ii]).hide()
+	}
+
+	for(var ii = 0; ii < img_order.length; ii++){
+		if(page_context[dishtypes[statepics]]["url"][ii]){
+			jQuery(img_order[ii]).show()
+			jQuery(text_order[ii]).show()
 			jQuery(img_order[ii]).attr("src",path+ page_context[dishtypes[statepics]]["url"][ii]);
         	jQuery(img_order_pop[ii]).attr("src",path+ page_context[dishtypes[statepics]]["url"][ii]);
         	replace_text(page_context[dishtypes[statepics]]["h"][ii],page_context[dishtypes[statepics]]["c"][ii],jQuery(text_order[ii]), jQuery(text_order_pop[ii]));
+		}
 		}
 
 	switch(statepics){

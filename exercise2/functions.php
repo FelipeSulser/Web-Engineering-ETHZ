@@ -48,10 +48,9 @@
 
       $wp_customize->add_section( 'Opening_Hours', 
          array(
-            'title'       => "Opening_Hours", //Visible title of section
+            'title'       => "Opening Hours", //Visible title of section
             'priority'    => 40, //Determines what order this appears in
             'capability'  => 'edit_theme_options', //Capability needed to tweak
-            'description' => __('Allows you to customize some example settings for MyTheme.', 'mytheme'), //Descriptive tooltip
          ) 
       );
 
@@ -110,6 +109,75 @@
     array(
         'label' => 'Holidays',
         'section' => 'Opening_Hours',
+        'type' => 'text',
+    )
+);
+
+
+
+      $wp_customize->add_section( 'Contact', 
+         array(
+            'title'       => "Contact", //Visible title of section
+            'priority'    => 40, //Determines what order this appears in
+            'capability'  => 'edit_theme_options', //Capability needed to tweak
+         ) 
+      );
+
+
+      $wp_customize->add_setting(
+    'city_contact_setting',
+    array(
+        'default' => 'Mustercontact',
+    )
+);
+      $wp_customize->add_control(
+    'city_contact_setting',
+    array(
+        'label' => 'City',
+        'section' => 'Contact',
+        'type' => 'text',
+    )
+);
+
+      $wp_customize->add_setting(
+    'street_contact_setting',
+    array(
+        'default' => 'Mustercontact',
+    )
+);
+      $wp_customize->add_control(
+    'street_contact_setting',
+    array(
+        'label' => 'Street',
+        'section' => 'Contact',
+        'type' => 'text',
+    )
+);
+      $wp_customize->add_setting(
+    'phone_contact_setting',
+    array(
+        'default' => 'Mustercontact',
+    )
+);
+      $wp_customize->add_control(
+    'phone_contact_setting',
+    array(
+        'label' => 'Phone',
+        'section' => 'Contact',
+        'type' => 'text',
+    )
+);
+      $wp_customize->add_setting(
+    'email_contact_setting',
+    array(
+        'default' => 'Mustercontact',
+    )
+);
+      $wp_customize->add_control(
+    'email_contact_setting',
+    array(
+        'label' => 'Email',
+        'section' => 'Contact',
         'type' => 'text',
     )
 );

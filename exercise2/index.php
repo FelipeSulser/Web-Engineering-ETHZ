@@ -543,10 +543,10 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 				</div>
 				<div  id="Contacts" class="leftrightimp">
 					<h2>  Contacts </h2>
-					<p> <b>ADDRESS : </b>4578 Zurich</p> </br>
-					<p> Badenerstrasse 500</p> </br>
-					<p> <b>PHONE : </b>(606) 144-0100 </p> </br>
-					<p> <b>EMAIL : </b>admin@laplace.com</p> </br>
+					<p> <b>ADDRESS : </b><?php echo get_theme_mod( 'city_contact_setting', 'Closed' ); ?></p> </br>
+					<p> <?php echo get_theme_mod( 'street_contact_setting', 'Closed' ); ?></p> </br>
+					<p> <b>PHONE : </b><?php echo get_theme_mod( 'phone_contact_setting', 'Closed' ); ?> </p> </br>
+					<p> <b>EMAIL : </b><?php echo get_theme_mod( 'email_contact_setting', 'Closed' ); ?></p> </br>
 				</div>	
 			</div>	
 				<div id="Footer">
