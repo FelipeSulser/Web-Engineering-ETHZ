@@ -361,178 +361,128 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
     ) );  
 ?>
 <?php while (have_posts()) : the_post(); ?>
-        <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-        <p><?php echo get_the_excerpt(); ?></p>
+        
         <?php 
         $objectdd = get_attached_media('image');
         $id_media = key($objectdd);
         $media_url = get_attached_media( 'image' )[$id_media]->guid;
+        $meta_current = get_post_meta($id_media);
+        $date_post = get_post_meta(get_the_ID(), 'key1', TRUE);
+        
+        $date_start = get_post_custom()['key1'][0];
+        $date_end =get_post_custom()['key2'][0];
         ?>
+
+
+
+        <?php echo "<div class=\"bigEventBox\">" ?>
+
+			<?php echo "<span ><span  ></span></span>"; ?>
+			
+		
+
+			<img class="bigImage" src="<?php echo $media_url ?>">
+			<a class="header-sum">
+			<h3><?php echo the_title(); ?></h3>
+			<h2><?php echo date('d/m/Y H:i:s',$date_start); ?></h2>
+
+			<h2>
+				<?php
+			if($date_end != NULL)
+			echo date('d/m/Y H:i:s', $date_end); ?></h2>
+		</a>
+		
+		<?php the_excerpt(); ?> 
+		<?php echo "</div>";?>
 <?php endwhile;?>
 
-								<?php
-
-								function cmp2($a, $b)
-								{
-								   return $a->DATE_STARTING > $b->DATE_STARTING;
-								}	
-								$my_posts_future = get_posts(array(
-								'numberposts'	=> -1,
-								'post_type'		=> 'post',
-								'meta_key' => 'DATE_STARTING',
-								'orderby'	=> 'meta_value',
-								'order'		=> 'ASC'
-							));
-								if($my_posts_future):
-									$countermax = 3;
-									foreach($my_posts_future as &$postinfopast){
-										$idval = $postinfopast->ID;
-										$meta_current = get_post_meta($idval);
-										$date_post = $meta_current['DATE_STARTING'][0];
-										$postinfopast->DATE_STARTING =(int) $date_post;
-									}
-									usort($my_posts_future,"cmp2")
-									
-								?>
-
-								<?php foreach($my_posts_future as $postinfo):
-									$idval = $postinfo->ID;
-									
-									$current_tstamp = time();
-									$meta_current = get_post_meta($idval);
-									$date_post = $meta_current['DATE_STARTING'][0];
-									if($date_post >  $current_tstamp and $countermax > 0):
-										$countermax = $countermax -1;
-										
-										$img_url = $meta_current['URLDIR'];
-										
-										setup_postdata($postinfo) ;
-										
-										?>
-
-										<?php echo "<div class=\"bigEventBox\">" ?>
-
-										<?php echo "<span ><span  ></span></span>"; ?>
-										
-									
-
-										<img class="bigImage" src="<?php echo bloginfo('template_directory').$img_url[0]; ?>">
-										<a class="header-sum">
-										<h3><?php echo $postinfo->post_title; ?></h3>
-										<h2><?php echo date('d/m/Y H:i:s', $meta_current['DATE_STARTING'][0]); ?></h2>
-
-										<h2><?php 
-										$datatime = $meta_current['DATE_ENDING'][0];
-										if($datatime != NULL)
-										echo  date('d/m/Y H:i:s', $meta_current['DATE_ENDING'][0]); ?></h2>
-									</a>
-									
-									<?php the_excerpt(); ?> 
-									<?php echo "</div>";?>
-									<?php endif;?>
 								
-								<?php endforeach;?>
-
-
-
-							<?php endif; ?>
 								
 						</div>
 						</br> </br>
 						<div  id="centerid">
 						<h3 > <b> Past Events </b> </h3>
 						<div id="eventpast">
-<?php
+<?php 
 
-$mynewdate = time();
-    query_posts(array( 
+	$mydate = time();
+   $my_posts_past = get_posts(array( 
         'post_type' => 'event_post',
         'orderby' => 'meta_value', // We want to organize the events by date    
         'meta_key' => 'key1', // Grab the "start date" field created via "More Fields" plugin (stored in YYYY-MM-DD format)
         'order' => 'DESC', // ASC is the other option    
-        'posts_per_page' => '8', // Let's show them all.   
+        'posts_per_page' => '4', // Let's show them all.   
         'meta_query' => array( // WordPress has all the results, now, return only the events after today's date
             array(
                 'key' => 'key1', // Check the start date field
-                'value' => $mynewdate, // Set today's date (note the similar format)
+                'value' => $mydate, // Set today's date (note the similar format)
                 'compare' => '<=' // Return the ones greater than today's date
                 )
             ),
     ) );  
 ?>
-<?php while (have_posts()) : the_post(); ?>
-        <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-        <p><?php echo get_the_excerpt(); ?></p>
-        <?php 
-        $objectdd = get_attached_media('image');
-        $id_media = key($objectdd);
-        $media_url = get_attached_media( 'image' )[$id_media]->guid;
-        ?>
-<?php endwhile;?>
-							<?php
+<?php
 
-								function cmp($a, $b)
-								{
-								   return $a->DATE_STARTING < $b->DATE_STARTING;
-								}	
-								$my_posts_past = get_posts(array(
-								'numberposts'	=> -1,
-								'post_type'		=> 'post',
-								'meta_key'		=> 'OBJECT_TYPE',
-								'meta_value'	=> 'event'
-							));
-								if($my_posts_past):
-									foreach($my_posts_past as &$postinfopast){
-										$idval = $postinfopast->ID;
-										$meta_current = get_post_meta($idval);
-										$date_post = $meta_current['DATE_STARTING'][0];
-										$postinfopast->DATE_STARTING =(int) $date_post;
-									}
-									usort($my_posts_past,"cmp")
-								?>
-								<?php foreach($my_posts_past as $postinfopast):
-									$idval = $postinfopast->ID;
-									$current_tstamp = time();
-									$mylimit = 0;
-									$meta_current = get_post_meta($idval);
-									$date_post = $meta_current['DATE_STARTING'][0];
+		function cmp($a, $b)
+		{
+		   return $a->DATE_STARTING < $b->DATE_STARTING;
+		}	
+		
+		if($my_posts_past):
+			foreach($my_posts_past as &$postinfopast){
+				$idval = $postinfopast->ID;
+				$meta_current = get_post_meta($idval);
+				$date_start2 = get_post_custom($idval)['key1'][0];
+				$postinfopast->DATE_STARTING =(int) $date_start2;
+			}
+			usort($my_posts_past,"cmp")
+		?>
 
-									if($date_post <  $current_tstamp ):
-										if($limit < 4):
-										$img_url = $meta_current['URLDIR'];
-										
-										setup_postdata($postinfopast) ;
-										
-										?>
-										<?php echo "<div class=\"smallEventBox\">" ?>
 
-										<?php echo "<span ><span  ></span></span>"; ?>
-										
-									
-										<div id="divforsmallimg">
-										<img class="smallImage" src="<?php echo bloginfo('template_directory').$img_url[0]; ?>">
-										</div>
-										<a>
-										<h3><?php echo $postinfopast->post_title; ?></h3>
-										<h2><?php echo date('d/m/Y H:i:s', $meta_current['DATE_STARTING'][0]); ?></h2>
-										<h2><?php 
-										$datatime = $meta_current['DATE_ENDING'][0];
-										if($datatime != NULL)
-										echo  date('d/m/Y H:i:s', $meta_current['DATE_ENDING'][0]); ?></h2>
-									</a>
-									<p></p>
-									
-									<?php echo "</div>";?>
-								<?php endif;?>
-									<?php 
-									$limit = $limit +1;
-									endif;?>
-								
-								<?php endforeach;?>
+		<?php foreach($my_posts_past as $postinfopast):
+			$idval = $postinfopast->ID;
+			$current_tstamp = time();
+			$mylimit = 0;
+			$meta_current = get_post_meta($idval);
+			$date_post =  get_post_custom($idval)['key1'][0];
+
+			if($date_post <  $current_tstamp ):
+				if($limit < 4):
+				$img_url = $get_attached_media( 'image', $idval)[$idval]->guid;
+				
+				setup_postdata($postinfopast) ;
+				
+				?>
+				<?php echo "<div class=\"smallEventBox\">" ?>
+
+				<?php echo "<span ><span  ></span></span>"; ?>
+				
+			
+				<div id="divforsmallimg">
+				<img class="smallImage" src="<?php echo $img_url; ?>">
+				</div>
+				<a>
+				<h3><?php echo $postinfopast->post_title; ?></h3>
+				<h2><?php echo date('d/m/Y H:i:s', $date_post); ?></h2>
+				<h2><?php 
+				$datatime = get_post_custom($idval)['key2'][0];
+				if($datatime != NULL)
+				echo  date('d/m/Y H:i:s', $datatime); ?></h2>
+			</a>
+			<p></p>
+			
+			<?php echo "</div>";?>
+		<?php endif;?>
+			<?php 
+			$limit = $limit +1;
+			endif;?>
+		
+		<?php endforeach;?>
+
+	<?php endif; ?>
 
 
 
-							<?php endif; ?>
 									
 						</div>
 						</br> </br>

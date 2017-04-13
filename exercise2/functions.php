@@ -496,15 +496,14 @@ function save_tf_events($post_id){
   return $post_id;
   endif;
   $updatestartd = strtotime ( $_POST["tf_events_startdate"] . $_POST["tf_events_starttime"] );
-  update_post_meta($post_id, "key1", $updatestartd );
+  update_post_meta($post_id, "key1",(int) $updatestartd );
    
   if(!isset($_POST["tf_events_enddate"])):
   return $post_id;
   endif;
   $updateendd = strtotime ( $_POST["tf_events_enddate"] . $_POST["tf_events_endtime"]);
-  update_post_meta($post_id, "key2", $updateendd );
+  update_post_meta($post_id, "key2", (int)$updateendd );
 
-  
    
 }
 
