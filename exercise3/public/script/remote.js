@@ -2,6 +2,7 @@ var currentImage = 0; // the currently selected image
 var imageCount = 7; // the maximum number of images available
 var room_ix;
 var rooms = {};
+var attached = {};
 function showImage (index){
     // Update selection on remote
     currentImage = index;
@@ -42,6 +43,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     connectToServer();
 });
 
+$(document).ready(function(){
+    hooks();
+});
+
+function hooks(){
+    //When button for screen is clicked, this is triggered
+   $('body').on('click', 'li button', function(){
+    console.log("Clicked");
+    console.log(this.id);
+
+   });
+}   
+
 
 function connectToServer(){
     // TODO connect to the socket.io server
@@ -59,8 +73,9 @@ function connectToServer(){
             rooms = screendata;
             console.log(screendata);
             displayed = "";
+            console.log("changescreens");
             for(var k in screendata){
-                displayed+="<li>"+k+"</li>";
+                displayed+="<li>"+k+" <button id='"+k+"'> Connect</button></li>";
             }
             $("#menu ul").html(displayed);
         });

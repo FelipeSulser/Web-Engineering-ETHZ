@@ -16,6 +16,7 @@ io.on('connection', function(socket){
 	 var userId;
 	 var type;
 	 var myr_ix = remote_ix;
+	 var myname;
 	 console.log(myr_ix);
 	 remote_ix++;
 	 console.log(availScreens);
@@ -35,10 +36,12 @@ io.on('connection', function(socket){
 	 	console.log(socket.id);
 	 	type = "screen";
 	 	userId = socket.id;
+	 	myname = name;
 	 	screenList[socket.id] = 1;
 	 	availScreens[name] = 1;
 
 	 	//Broadcast the remotes that a screen connected
+	 	io.emit('changescreens', availScreens);
 	 });
 
 	 socket.on('disconnect', function(){
@@ -50,6 +53,8 @@ io.on('connection', function(socket){
 	 	if(type === "screen"){
 	 		//Broadcast remotes of screen disconnection
 	 		delete screenList[userId];
+	 		delete availScreens[myname];
+	 		io.emit('changescreens',availScreens);
 	 	}
 	 })
 });
