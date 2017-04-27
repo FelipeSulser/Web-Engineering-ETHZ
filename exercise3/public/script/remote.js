@@ -1,18 +1,26 @@
 var currentImage = 0; // the currently selected image
 var imageCount = 7; // the maximum number of images available
-var room_ix;
-var rooms = {};
-var attached = {};
+var socket = 0.0;
+var screens_connected = 0
+
 function showImage (index){
     // Update selection on remote
     currentImage = index;
     var images = document.querySelectorAll("img");
     document.querySelector("img.selected").classList.toggle("selected");
     images[index].classList.toggle("selected");
+    /**
+    Send the images
+    **/
+    url_to_send = []
+    for (i = 0; i < screens_connected; i++) {
+      console.log("Sending Iamge",socket.connected)
+      idx_show = (index + i) % imageCount
+      url_to_send.push(idx_show)
+      //  socket.emit('image', { image: true, buffer: buf.toString('base64') })
+    }
 
-    // Send the command to the screen
-    // TODO
-    alert("TODO send the index to the screen")
+    socket.emit('image_changed', url_to_send)
 }
 
 function initialiseGallery(){
@@ -50,33 +58,32 @@ $(document).ready(function(){
 function hooks(){
     //When button for screen is clicked, this is triggered
    $('body').on('click', 'li button', function(){
-    console.log("Clicked");
-    console.log(this.id);
+     socket.emit("toggle_switch",this.id)
+     if(this.innerHTML === "Connect"){
+       this.innerHTML = "Disconnect"
+     }else{
+      this.innerHTML = "Connect"
 
+     }
    });
-}   
+}
 
 
 function connectToServer(){
-    // TODO connect to the socket.io server
-    var socket = io.connect();
+    socket = io.connect();
     console.log('check 1',socket.connected);
     socket.on('connect', function(){
         socket.emit('remoteConnection');
         console.log('check 2', socket.connected);
-        socket.on('roomix',function(ix){
-            room_ix = ix;
-            console.log(room_ix);
-        });
 
         socket.on('changescreens',function(screendata){
-            rooms = screendata;
-            console.log(screendata);
+            console.log(screendata)
             displayed = "";
-            console.log("changescreens");
-            for(var k in screendata){
-                displayed+="<li>"+k+" <button id='"+k+"'> Connect</button></li>";
+            for(i = 0;i< screendata.length; i++){
+                name = screendata[i]
+                displayed+="<li>"+name+" <button id='"+name+"'>Connect</button></li>";
             }
+            screens_connected = screendata.length
             $("#menu ul").html(displayed);
         });
     });

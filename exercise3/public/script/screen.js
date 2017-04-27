@@ -44,7 +44,6 @@ function getQueryParams() {
 
 
 function connectToServer(){
-   // TODO connect to the socket.io server
     var socket = io.connect();
     console.log('check 1',socket.connected);
     socket.on('connect', function(){
@@ -52,4 +51,10 @@ function connectToServer(){
         socket.emit('screenConnection',myname);
         console.log('check 2', socket.connected);
     });
+    socket.on('change_image',function(img_index){
+        console.log("Image was changed " +  img_index);
+        clearImage();
+        showImage(img_index);
+    });
+
 }
