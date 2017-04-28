@@ -46,15 +46,19 @@ function getQueryParams() {
 function connectToServer(){
     var socket = io.connect();
     console.log('check 1',socket.connected);
+    socket.on('connect_error', function() {
+      clearImage()
+    });
     socket.on('connect', function(){
         var myname = getQueryParams().name;
         socket.emit('screenConnection',myname);
         console.log('check 2', socket.connected);
     });
-    socket.on('change_image',function(img_index){
+    socket.on('showImage',function(img_index){
         console.log("Image was changed " +  img_index);
         clearImage();
         showImage(img_index);
     });
+
 
 }
