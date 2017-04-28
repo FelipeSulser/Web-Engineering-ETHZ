@@ -94,4 +94,7 @@ function connectToServer() {
     displayed = "";
     $("#menu ul").html(displayed);
   });
+  socket.on('undoconnection',function(id){
+    $("#"+id).text('Connect');
+  });
 }

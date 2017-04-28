@@ -49,6 +49,7 @@
 
     socket.on("toggle_switch", function(id) {
       //Search for the socket_id of the screen
+      socket.broadcast.emit('undoconnection',id);
       keys = Object.keys(availScreens)
       screen_id = 0.0
       for (i = 0; i < keys.length; i++) {
@@ -60,6 +61,17 @@
             io.to(screen_id).emit("clear_image")
           } else {
             console.log("Setting Image")
+          }
+          remote_keys = Object.keys(remoteList)
+          for(var k in remoteList){
+            console.log(socket.id);
+            console.log(k);
+            console.log(k === socket.id);
+            if(k === socket.id){
+              continue;
+            }else{
+              remoteList[k][screen_id] = 1;
+            }
           }
           break
         }
