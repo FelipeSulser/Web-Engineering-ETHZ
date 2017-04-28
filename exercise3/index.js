@@ -22,7 +22,11 @@
     socket.on('remoteConnection', function() {
       console.log("A remote was connected");
       type = "remote";
-      remoteList[socket.id] = screenList;
+      key = Object.keys(screenList)
+      remoteList[socket.id] = {}
+      for(i = 0;i < key.length;i++){
+        remoteList[socket.id][key[i]] = 1
+      }
       screen_names = Object.keys(availScreens).map(function(key) {
         return availScreens[key];
       });
@@ -36,6 +40,7 @@
       idx = 0
       for (i = 0; i < image_idx.length; i++) {
         key = screen_ids[i]
+        console.log(remoteList[remote_id][key])
         if (remoteList[remote_id][key] == 0) {
           io.to(key).emit('showImage', image_idx[i])
         }
@@ -89,8 +94,8 @@
         console.log("Disconnected Remote")
         screen_id = Object.keys(screenList)
         for (i = 0; i < screen_id.length; i++) {
-          if (remoteList[socket.id][screen_id] == 0) {
-            io.to(screen_id).emit("clear_image")
+          if (remoteList[socket.id][screen_id[i]] == 0) {
+            io.to(screen_id[i]).emit("clear_image")
           }
         }
         delete remoteList[socket.id];
