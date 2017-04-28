@@ -2,6 +2,7 @@ var currentImage = 0; // the currently selected image
 var imageCount = 7; // the maximum number of images available
 var socket = 0.0;
 var screens_connected = 0
+var last_screendata = {}
 
 function showImage(index) {
   // Update selection on remote
@@ -59,15 +60,19 @@ function hooks() {
   //When button for screen is clicked, this is triggered
   $('body').on('click', 'li button', function() {
     socket.emit("toggle_switch", this.id)
+    showImage(currentImage)
     if (this.innerHTML === "Connect") {
-      showImage(currentImage)
       this.innerHTML = "Disconnect"
+      last_screendata[this.id] = 0
     } else {
       this.innerHTML = "Connect"
+      last_screendata[this.id] = 1
     }
 
   });
 }
+
+
 
 
 function connectToServer() {
@@ -77,17 +82,33 @@ function connectToServer() {
     socket.emit('remoteConnection');
     console.log('check 2', socket.connected);
 
-    socket.on('changescreens', function(screendata) {
-      console.log("New Screen Connected")
-      console.log(screendata)
+  socket.on('changescreens', function(screendata) {
+
       displayed = "";
       for (i = 0; i < screendata.length; i++) {
         name = screendata[i]
-        displayed += "<li>" + name + " <button id='" + name + "'>Connect</button></li>";
+        status = "Connect"
+        if(name in last_screendata){
+          console.log("We already have this here")
+          if(last_screendata[name] === 0){
+            status = "Disconnect"
+          }
+        }else{
+          last_screendata[name] = 1
+        }
+        displayed += "<li>" + name + " <button id='" + name + "'>"+ status + "</button></li>";
       }
       screens_connected = screendata.length
       $("#menu ul").html(displayed);
     });
+    for(var k in last_screendata){
+      if(k in screendata){
+        continue;
+      }else{
+        delete last_screendata[k]
+      }
+    }
+    console.log(last_screendata)
 
   });
   socket.on('connect_error', function() {

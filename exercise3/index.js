@@ -42,7 +42,8 @@
         key = screen_ids[i]
         console.log(remoteList[remote_id][key])
         if (remoteList[remote_id][key] == 0) {
-          io.to(key).emit('showImage', image_idx[i])
+          io.to(key).emit('showImage', image_idx[idx])
+          idx += 1
         }
       }
     });
