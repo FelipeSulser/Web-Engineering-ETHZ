@@ -59,6 +59,9 @@ function connectToServer(){
         clearImage();
         showImage(img_index);
     });
+    socket.on("clear_image",function(){
+      clearImage();
+    });
 
 
 }
