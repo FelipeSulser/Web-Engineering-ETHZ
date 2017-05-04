@@ -52,9 +52,56 @@ document.addEventListener("DOMContentLoaded", function(event) {
   connectToServer();
 });
 
+var t0 = 0
+
 $(document).ready(function() {
   hooks();
+  // Check if it is a smartphone
+  if (window.DeviceOrientationEvent) {
+    $('#info').html("DeviceOrientation is supported")
+    console.log("DeviceOrientation is supported");
+    t0 = performance.now();
+    handleDeviceOrientation()
+  }
 });
+
+function handleDeviceOrientation(){
+  window.addEventListener('deviceorientation', function(eventData){
+    // gamma is the left-to-right tilt in degrees, where right is positive (means next image)
+    var tiltLR = eventData.gamma;
+
+    // beta is the front-to-back tilt in degrees, where front is positive
+    var tiltFB = eventData.beta;
+    // alpha is the compass direction the device is facing in degrees
+    var dir = eventData.alpha
+    //$('#smallinfo').html('<p> '+ str(tiltLR) + '</p><p>' + tiltFB + '</p> <p>' + dir + '</p>')
+
+    // call our orientation event handler
+    var t1 = performance.now()
+    if((t1 - t0) > 150){
+      t0 = t1
+      deviceOrientationHandler(tiltLR, tiltFB, dir);
+      //$('#gamma').html(tiltLR)
+      //$('#beta').html(tiltFB)
+      //$('#alpha').html(dir)
+    } 
+  }, false);
+}
+
+function deviceOrientationHandler(tiltLR, zoom, dir){
+  if(tiltLR > 30){
+    showImage((currentImage + 1) % imageCount)
+
+  }else if(tiltLR < -30){
+    next_image = (currentImage - 1) < 0 ? imageCount - 1 : currentImage - 1
+    showImage(next_image)
+
+  }else if(zoom > 15){
+    // change zoom in steps
+  }else if(zoom < -15){
+    // change zoom in steps
+  }
+}
 
 function hooks() {
   //When button for screen is clicked, this is triggered
