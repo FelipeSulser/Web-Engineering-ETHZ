@@ -3,7 +3,7 @@ var imageCount = 7; // the maximum number of images available
 var socket = 0.0;
 var screens_connected = 0
 var last_screendata = {}
-
+var STATE = "NEUTR";
 function showImage(index) {
   // Update selection on remote
   currentImage = index;
@@ -75,10 +75,14 @@ function handleDeviceOrientation(){
     // alpha is the compass direction the device is facing in degrees
     var dir = eventData.alpha
     //$('#smallinfo').html('<p> '+ str(tiltLR) + '</p><p>' + tiltFB + '</p> <p>' + dir + '</p>')
-
     // call our orientation event handler
     var t1 = performance.now()
-    if((t1 - t0) > 150){
+    if(tiltLR < 2 || tiltLR > -2){
+      STATE = 'NEUTR';
+    }
+    if((t1 - t0) > 500){
+       $("#debugdata").html(tiltLR);
+    $("#control").html("NEUTR");
       t0 = t1
       deviceOrientationHandler(tiltLR, tiltFB, dir);
       prev_tlr = tiltLR
@@ -94,11 +98,24 @@ var prev_tfb = 0
 
 function deviceOrientationHandler(tiltLR, zoom, dir){
   sens = 20
-  if(tiltLR - prev_tlr > sens){
-    showImage((currentImage + 1) % imageCount)
-  } else if(tiltLR - prev_tlr < -sens){
-    next_image = (currentImage - 1) < 0 ? imageCount - 1 : currentImage - 1
-    showImage(next_image)
+  if(tiltLR  > sens){
+    if(STATE === 'NEUTR'){
+      STATE = 'NEXT';
+      $("#info").html("+1");
+      showImage((currentImage + 1) % imageCount)
+      $("#control").html("NEXT");
+    }
+  } else if(tiltLR  < -sens){
+    if(STATE === 'NEUTR'){
+        STATE = 'PREV';
+       $("#debugdata").html(tiltLR);
+        $("#info").html("-1");
+        $("#control").html("PREV");
+      next_image = (currentImage - 1) < 0 ? imageCount - 1 : currentImage - 1
+      showImage(next_image)
+    }
+  }else{
+    
   }
   if(zoom > 15){
     // TODO get right zoom_factor
