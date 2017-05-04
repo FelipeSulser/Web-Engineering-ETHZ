@@ -80,7 +80,7 @@ function handleDeviceOrientation(){
     if(tiltLR < 2 || tiltLR > -2){
       STATE = 'NEUTR';
     }
-    if((t1 - t0) > 500){
+    if((t1 - t0) > 100){
        $("#debugdata").html(tiltLR);
     $("#control").html("NEUTR");
       t0 = t1
@@ -98,17 +98,18 @@ var prev_tfb = 0
 
 function deviceOrientationHandler(tiltLR, zoom, dir){
   sens = 20
-  if(tiltLR  > sens){
+   $("#debugdata").html(tiltLR - prev_tlr+" and "+tiltLR);
+  if(tiltLR - prev_tlr > sens && tiltLR > sens){
     if(STATE === 'NEUTR'){
       STATE = 'NEXT';
       $("#info").html("+1");
       showImage((currentImage + 1) % imageCount)
       $("#control").html("NEXT");
     }
-  } else if(tiltLR  < -sens){
+  } else if(tiltLR - prev_tlr < -sens && tiltLR < -sens){
     if(STATE === 'NEUTR'){
         STATE = 'PREV';
-       $("#debugdata").html(tiltLR);
+       //$("#debugdata").html(tiltLR);
         $("#info").html("-1");
         $("#control").html("PREV");
       next_image = (currentImage - 1) < 0 ? imageCount - 1 : currentImage - 1
