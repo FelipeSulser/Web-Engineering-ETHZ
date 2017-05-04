@@ -21,6 +21,11 @@ function showImage (index){
     }
 }
 
+function zoomImg(){
+    var img = document.querySelector('#image');
+    //zoom it according to zoom factor
+}
+
 function clearImage(){
     var img = document.querySelector('#image');
     var msg = document.querySelector('#msg');
@@ -63,5 +68,9 @@ function connectToServer(){
       clearImage();
     });
 
+    socket.on('zoom_current_image', function(zoom_factor){
+        console.log("Zoom image with factor : ", zoom_factor)
+        zoomImg(zoom_factor)
+    })
 
 }

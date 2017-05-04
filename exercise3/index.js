@@ -133,4 +133,13 @@
         io.emit('changescreens', screen_names);
       }
     })
+
+    socket.on('zoom_img', function(zoom_factor){
+      console.log("Zoom image", zoom_factor)
+      remote_id = socket.id
+      screen_ids = Object.keys(screenList)
+      for(var screen in remoteList[remote_id]){
+        io.to(screen).emit('zoom_current_image', zoom_factor)
+      }
+    })
   });

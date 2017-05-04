@@ -81,6 +81,7 @@ function handleDeviceOrientation(){
     if((t1 - t0) > 150){
       t0 = t1
       deviceOrientationHandler(tiltLR, tiltFB, dir);
+      prev_tlr = tiltLR
       //$('#gamma').html(tiltLR)
       //$('#beta').html(tiltFB)
       //$('#alpha').html(dir)
@@ -88,16 +89,21 @@ function handleDeviceOrientation(){
   }, false);
 }
 
-function deviceOrientationHandler(tiltLR, zoom, dir){
-  if(tiltLR > 30){
-    showImage((currentImage + 1) % imageCount)
+var prev_tlr = 0
+var prev_tfb = 0
 
-  }else if(tiltLR < -30){
+function deviceOrientationHandler(tiltLR, zoom, dir){
+  sens = 20
+  if(tiltLR - prev_tlr > sens){
+    showImage((currentImage + 1) % imageCount)
+  } else if(tiltLR - prev_tlr < -sens){
     next_image = (currentImage - 1) < 0 ? imageCount - 1 : currentImage - 1
     showImage(next_image)
-
-  }else if(zoom > 15){
-    // change zoom in steps
+  }
+  if(zoom > 15){
+    // TODO get right zoom_factor
+    zoom_factor = 2
+    socket.emit("zoom_img", zoom_factor)
   }else if(zoom < -15){
     // change zoom in steps
   }
