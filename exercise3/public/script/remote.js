@@ -137,7 +137,8 @@ function deviceOrientationHandler(tiltLR, tiltFB, dir){
     zoom_factor = 1.3;
   }
   
-  socket.emit("zoom_img", zoom_factor)
+  socket.emit("zoom_img", zoom_factor);
+
 
 }
 
@@ -168,8 +169,7 @@ function connectToServer() {
     console.log('check 2', socket.connected);
 
   socket.on('changescreens', function(screendata) {
-    console.log("SCREENDATA");
-    console.log(screendata);
+   
       displayed = "";
 
       //TODO for Maximilian Grüner, please fix the disconnect issue
@@ -189,17 +189,24 @@ function connectToServer() {
         }
         displayed += "<li>" + name + " <button id='" + name + "'>"+ status + "</button></li>";
       }
-      screens_connected = screendata.length
-      $("#menu ul").html(displayed);
-    });
-    for(var k in last_screendata){
-      if(k in screendata){
-        continue;
-      }else{
-        delete last_screendata[k]
-      }
+      screens_connected = screendata.length;
+      console.log("Start debug");
+      console.log(last_screendata);
+      console.log(screendata)
+      for(var k in last_screendata){
+        console.log("k = "+k);
+        if(screendata.indexOf(k+"") >= 0){
+          continue;
+        }else{
+          delete last_screendata[k]
+        }
     }
     console.log(last_screendata)
+   console.log("END DEBUG");
+      $("#menu ul").html(displayed);
+
+    });
+   
 
   });
   socket.on('connect_error', function() {
