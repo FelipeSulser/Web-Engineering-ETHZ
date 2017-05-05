@@ -135,11 +135,18 @@
     })
 
     socket.on('zoom_img', function(zoom_factor){
-      console.log("Zoom image", zoom_factor)
+      //console.log("Zoom image", zoom_factor)
       remote_id = socket.id
-      screen_ids = Object.keys(screenList)
-      for(var screen in remoteList[remote_id]){
-        io.to(screen).emit('zoom_current_image', zoom_factor)
+      screen_ids = Object.keys(screenList);
+      //console.log(remoteList);
+      for(var yy = 0; yy < remoteList.size; yy++){
+        console.log(remoteList[yy]);
+        for(var xx = 0; xx < remoteList[yy].length; xx++){
+          if(remoteList[yy][xx] == 0){
+            io.to(remoteList[yy][xx]).emit('zoom_current_image', zoom_factor);
+          }
+        }
+       
       }
     })
   });

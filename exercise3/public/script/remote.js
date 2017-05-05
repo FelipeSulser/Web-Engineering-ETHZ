@@ -58,7 +58,7 @@ $(document).ready(function() {
   hooks();
   // Check if it is a smartphone
   if (window.DeviceOrientationEvent) {
-    $('#info').html("DeviceOrientation is supported")
+    //$('#info').html("DeviceOrientation is supported")
     console.log("DeviceOrientation is supported");
     t0 = performance.now();
     handleDeviceOrientation()
@@ -81,8 +81,6 @@ function handleDeviceOrientation(){
       STATE = 'NEUTR';
     }
     if((t1 - t0) > 100){
-       $("#debugdata").html(tiltLR);
-    $("#control").html("NEUTR");
       t0 = t1
       deviceOrientationHandler(tiltLR, tiltFB, dir);
       prev_tlr = tiltLR
@@ -96,35 +94,51 @@ function handleDeviceOrientation(){
 var prev_tlr = 0
 var prev_tfb = 0
 
-function deviceOrientationHandler(tiltLR, zoom, dir){
+function deviceOrientationHandler(tiltLR, tiltFB, dir){
   sens = 20
-   $("#debugdata").html(tiltLR - prev_tlr+" and "+tiltLR);
+   //$("#debugdata").html(tiltLR - prev_tlr+" and "+tiltLR);
+
+   //To make it jerk-only comment the && second case
   if(tiltLR - prev_tlr > sens && tiltLR > sens){
     if(STATE === 'NEUTR'){
       STATE = 'NEXT';
-      $("#info").html("+1");
       showImage((currentImage + 1) % imageCount)
-      $("#control").html("NEXT");
+
     }
-  } else if(tiltLR - prev_tlr < -sens && tiltLR < -sens){
+
+  } else if(tiltLR - prev_tlr <= -sens && tiltLR <= -sens){
     if(STATE === 'NEUTR'){
         STATE = 'PREV';
        //$("#debugdata").html(tiltLR);
-        $("#info").html("-1");
-        $("#control").html("PREV");
       next_image = (currentImage - 1) < 0 ? imageCount - 1 : currentImage - 1
       showImage(next_image)
     }
   }else{
     
   }
-  if(zoom > 15){
-    // TODO get right zoom_factor
-    zoom_factor = 2
-    socket.emit("zoom_img", zoom_factor)
-  }else if(zoom < -15){
-    // change zoom in steps
+
+  // ZOOM IN --> [-10,-20] (-1) and [-20,-inf] (-2)
+  //ZOOM out --> [10,20] (1) and [20,inf] (2)
+  // (0) is normal image zoom factor
+  var zoom_factor;
+  if(tiltFB< -20){
+    zoom_factor = 0.3;
   }
+  if(tiltFB < -10 && tiltFB >= -20){
+    zoom_factor = 0.7;
+  }
+  if(tiltFB < 30 && tiltFB > -10){
+    zoom_factor = 1;
+  }
+  if(tiltFB > 45){
+    zoom_factor = 1.7;
+  }
+  if(tiltFB > 30 && tiltFB <= 45){
+    zoom_factor = 1.3;
+  }
+  
+  socket.emit("zoom_img", zoom_factor)
+
 }
 
 function hooks() {
@@ -154,8 +168,14 @@ function connectToServer() {
     console.log('check 2', socket.connected);
 
   socket.on('changescreens', function(screendata) {
-
+    console.log("SCREENDATA");
+    console.log(screendata);
       displayed = "";
+
+      //TODO for Maximilian Grüner, please fix the disconnect issue
+
+      //it happens when you attach a screen, then if you refresh the 
+      //screen it still says disconnect even if its like a new screen
       for (i = 0; i < screendata.length; i++) {
         name = screendata[i]
         status = "Connect"
