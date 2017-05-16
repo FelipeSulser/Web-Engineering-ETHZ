@@ -5,6 +5,7 @@ var screens_connected = 0
 var last_screendata = {}
 var STATE = "NEUTR";
 function showImage(index) {
+  console.log("showing image to "+ index);
   // Update selection on remote
   currentImage = index;
   var images = document.querySelectorAll("img");
@@ -204,7 +205,7 @@ function connectToServer() {
     console.log(last_screendata)
    console.log("END DEBUG");
       $("#menu ul").html(displayed);
-
+          showImage(currentImage);
     });
    
 

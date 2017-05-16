@@ -102,19 +102,23 @@ function connectToServer(){
             var myimg =document.getElementById('image');
             var mystr = "";
             if(zoom_factor == 0.3){
-                mystr= "15%";
+                //mystr= "15%";
+                mystr= "100%";
             }
             if(zoom_factor == 0.7){
-                 mystr = "30%";
+                 //mystr = "30%";
+                 mystr= "75%";
             }
             if(zoom_factor == 1){
                  mystr = "50%";
             }
             if(zoom_factor == 1.3){
-                 mystr = "75%";
+                 //mystr = "75%";
+                 mystr= "30%";
             }
             if(zoom_factor == 1.7){
-                mystr = "100%";
+               // mystr = "100%";
+               mystr= "15%";
             }
             last_mystr = mystr;
            
